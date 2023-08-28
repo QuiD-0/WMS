@@ -31,12 +31,14 @@ class RegisterProductTest {
             100L
         )
         registerProduct.request(request)
+
+//        assertThat(productRepository.findAll()).hasSize(1)
     }
 }
 
 class RegisterProduct {
     fun request(request: RegisterProductRequest) {
-        TODO("Not yet implemented")
+        println(request)
     }
 }
 
@@ -54,17 +56,17 @@ data class RegisterProductRequest(
     val heightInMillimeters: Long,
     val lengthInMillimeters: Long,
 
-)
+    )
 
 enum class Category(
     val description: String
-){
+) {
     ELECTRONICS("전자 제품")
 }
 
 enum class TemperatureZone(
     val description: String
-){
+) {
     ROOM_TEMPERATURE("상온"),
 }
 
