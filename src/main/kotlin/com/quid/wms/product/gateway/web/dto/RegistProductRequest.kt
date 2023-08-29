@@ -20,7 +20,7 @@ data class RegistProductRequest(
     val lengthInMillimeters: Long,
 ) {
     fun toDomain() = Product(
-        1L, name, code, description, brand, maker, origin, category, temperatureZone, weight, ProductSize(
+        null, name, code, description, brand, maker, origin, category, temperatureZone, weight, ProductSize(
             widthInMillimeters, heightInMillimeters, lengthInMillimeters
         )
     )

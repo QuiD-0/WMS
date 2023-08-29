@@ -1,7 +1,7 @@
 package com.quid.wms.product.domain
 
 data class Product(
-    val id: Long,
+    val id: Long? = null,
     val name: String,
     val code: String,
     val description: String,
@@ -11,7 +11,7 @@ data class Product(
     val category: Category,
     val temperatureZone: TemperatureZone,
     val weight: Long,
-    val size: ProductSize,
+    val productSize: ProductSize,
 ) {
     init {
         require(name.isNotBlank()) { "상품명은 필수입니다." }
