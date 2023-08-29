@@ -2,21 +2,28 @@ package com.quid.wms.product.gateway.repository
 
 import com.quid.wms.product.domain.Product
 import org.springframework.stereotype.Repository
+import org.springframework.transaction.annotation.Transactional
 
 interface ProductRepository {
     fun findAll(): List<Product>
     fun save(product: Product)
+    fun deleteAll()
 
     @Repository
-    class ProductMemoryRepository: ProductRepository {
-        private val products = mutableMapOf<Long, Product>()
+    class ProductRepositoryImpl(
+        private val jpaRepository: ProductJpaRepository
+    ): ProductRepository {
 
         override fun findAll(): List<Product> {
-            return products.values.toList()
+            return jpaRepository.findAll().map { it.toDomain() }
         }
 
         override fun save(product: Product) {
-            products[product.id?:1] = product
+            jpaRepository.save(fromDomain(product))
+        }
+
+        override fun deleteAll() {
+            jpaRepository.deleteAll()
         }
     }
 }
