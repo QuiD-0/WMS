@@ -1,5 +1,6 @@
 package com.quid.wms.product.gateway.web
 
+import com.quid.wms.product.gateway.repository.ProductRepository
 import com.quid.wms.product.gateway.web.dto.RegistProductRequest
 import com.quid.wms.product.usecase.RegistProduct
 import org.springframework.http.HttpStatus
