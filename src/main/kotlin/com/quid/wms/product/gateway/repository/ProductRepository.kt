@@ -8,6 +8,7 @@ interface ProductRepository {
     fun findAll(): List<Product>
     fun save(product: Product)
     fun deleteAll()
+    fun isExistByCode(code: String): Boolean
 
     @Repository
     class ProductRepositoryImpl(
@@ -24,6 +25,10 @@ interface ProductRepository {
 
         override fun deleteAll() {
             jpaRepository.deleteAll()
+        }
+
+        override fun isExistByCode(code: String): Boolean {
+            return jpaRepository.existsByCode(code)
         }
     }
 }

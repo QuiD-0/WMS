@@ -14,7 +14,9 @@ interface RegistProduct {
         private val productRepository: ProductRepository
     ) : RegistProduct {
         override fun register(product: Product) {
-            productRepository.save(product)
+            takeIf { productRepository.isExistByCode(product.code) }
+                ?.let { throw IllegalArgumentException("이미 존재하는 상품 코드입니다.") }
+                ?:let { productRepository.save(product) }
         }
     }
 }
