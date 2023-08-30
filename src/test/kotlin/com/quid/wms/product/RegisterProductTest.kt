@@ -8,16 +8,23 @@ import com.quid.wms.product.gateway.web.dto.RegistProductRequest
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.transaction.annotation.Transactional
 
 @ApiTest
 class RegisterProductTest {
 
     @Autowired
     lateinit var productRepository: ProductRepository
+
+    @BeforeEach
+    fun setUp() {
+        productRepository.deleteAll()
+    }
 
     @Test
     @DisplayName("상품을 등록한다.")
@@ -45,11 +52,6 @@ class RegisterProductTest {
             .then()
             .log().all()
             .statusCode(HttpStatus.CREATED.value())
-    }
-
-    @AfterEach
-    fun tearDown() {
-        productRepository.deleteAll()
     }
 }
 
