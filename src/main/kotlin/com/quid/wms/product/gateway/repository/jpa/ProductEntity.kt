@@ -1,4 +1,4 @@
-package com.quid.wms.product.gateway.repository
+package com.quid.wms.product.gateway.repository.jpa
 
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.Product

@@ -1,4 +1,4 @@
-package com.quid.wms.product.gateway.repository
+package com.quid.wms.product.gateway.repository.jpa
 
 import org.springframework.data.jpa.repository.JpaRepository
 

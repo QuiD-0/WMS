@@ -1,8 +1,9 @@
 package com.quid.wms.product.gateway.repository
 
 import com.quid.wms.product.domain.Product
+import com.quid.wms.product.gateway.repository.jpa.ProductJpaRepository
+import com.quid.wms.product.gateway.repository.jpa.fromDomain
 import org.springframework.stereotype.Repository
-import org.springframework.transaction.annotation.Transactional
 
 interface ProductRepository {
     fun findAll(): List<Product>

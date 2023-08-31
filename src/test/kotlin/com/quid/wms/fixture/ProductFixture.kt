@@ -26,14 +26,14 @@ class ProductFixture {
 }
 
 class ProductRepositoryFixture: ProductRepository {
-    private val products = mutableListOf<Product>()
+    private val products = mutableMapOf<Long, Product>()
 
     override fun findAll(): List<Product> {
-        return products
+        return products.values.toList()
     }
 
     override fun save(product: Product) {
-        products.add(product)
+        products[product.id!!] = product
     }
 
     override fun deleteAll() {
@@ -41,6 +41,6 @@ class ProductRepositoryFixture: ProductRepository {
     }
 
     override fun isExistByCode(code: String): Boolean {
-        return products.any { it.code == code }
+        return products.values.any { it.code == code }
     }
 }
