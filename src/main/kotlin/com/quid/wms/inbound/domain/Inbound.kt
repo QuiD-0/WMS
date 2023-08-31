@@ -8,13 +8,13 @@ data class Inbound(
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
-    val items: List<Item>
+    val inboundItems: List<InboundItem>
 ) {
     init {
         require(title.isNotBlank()) { "title is invalid" }
         require(description.isNotBlank()) { "description is invalid" }
         require(orderRequestAt.isAfter(LocalDateTime.now().minusDays(1))) { "orderRequestAt is invalid" }
         require(estimateArrivalAt.isAfter(orderRequestAt)) { "estimateArrivalAt is invalid" }
-        require(items.isNotEmpty()) { "items is invalid" }
+        require(inboundItems.isNotEmpty()) { "items is invalid" }
     }
 }

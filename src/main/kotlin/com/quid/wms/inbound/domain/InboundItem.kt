@@ -1,6 +1,6 @@
 package com.quid.wms.inbound.domain
 
-data class Item(
+data class InboundItem(
     val id: Long? = null,
     val productId: Long,
     val quantity: Long,

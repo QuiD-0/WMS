@@ -7,17 +7,6 @@ import java.time.LocalDateTime
 
 class InboundFixture {
 
-    fun inbound(): Inbound = Inbound(
-        id = 1,
-        title = "title",
-        description = "description",
-        orderRequestAt = LocalDateTime.now(),
-        estimateArrivalAt = LocalDateTime.now().plusDays(1),
-        items = listOf(
-            ItemFixture().item()
-        ),
-    )
-
     fun registRequest() = RegisterInboundRequest(
         "title",
         "description",
