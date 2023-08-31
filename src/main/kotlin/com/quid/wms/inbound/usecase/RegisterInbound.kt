@@ -15,7 +15,8 @@ interface RegisterInbound {
         private val inboundItemRepository: InboundItemRepository
     ) : RegisterInbound {
         override fun register(request: RegisterInboundRequest) {
-            request.item.map { inboundItemRepository.findById(it) }
+            request.item.map { it.toDomain() }
+                .let { inboundItemRepository.saveAll(it) }
                 .also { inboundRepository.save(request.toDomain(it)) }
         }
     }

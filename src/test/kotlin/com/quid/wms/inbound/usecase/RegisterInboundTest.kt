@@ -16,12 +16,20 @@ class RegisterInboundTest {
     @DisplayName("입고 등록")
     fun registerInbound() {
         val request = InboundFixture().registRequest()
-        val item = InboundItemFixture().item()
-        itemRepository.save(item)
 
         registerInbound.register(request)
 
         assert(inboundRepository.findAll().size == 1)
+    }
+
+    @Test
+    @DisplayName("아이템 등록")
+    fun registerInboundItem() {
+        val item = InboundItemFixture().item()
+
+        itemRepository.save(item)
+
+        assert(itemRepository.findAll().size == 1)
     }
 
 }

@@ -9,8 +9,7 @@ data class RegisterInboundRequest(
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
-    val item: List<Long>
+    val item: List<RegistItemRequest>
 ) {
-    fun toDomain(inboundItem: List<InboundItem>) =
-        Inbound(null, title, description, orderRequestAt, estimateArrivalAt, inboundItem)
+    fun toDomain(item: List<InboundItem>) = Inbound(null, title, description, orderRequestAt, estimateArrivalAt, item)
 }
