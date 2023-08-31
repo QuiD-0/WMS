@@ -1,4 +1,4 @@
-package com.quid.wms.product.gateway.web.dto
+package com.quid.wms.product.gateway.web.request
 
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.Product

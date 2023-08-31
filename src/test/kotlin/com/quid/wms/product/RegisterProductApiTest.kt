@@ -4,7 +4,7 @@ import com.quid.wms.annotation.ApiTest
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.TemperatureZone
 import com.quid.wms.product.gateway.repository.ProductRepository
-import com.quid.wms.product.gateway.web.dto.RegistProductRequest
+import com.quid.wms.product.gateway.web.request.RegistProductRequest
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.BeforeEach
