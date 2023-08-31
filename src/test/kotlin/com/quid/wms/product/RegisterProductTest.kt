@@ -27,7 +27,7 @@ class RegisterProductTest {
     }
 
     @Test
-    @DisplayName("상품을 등록한다.")
+    @DisplayName("상품 등록 api")
     fun registerProduct() {
         val request = RegistProductRequest(
             "name",
