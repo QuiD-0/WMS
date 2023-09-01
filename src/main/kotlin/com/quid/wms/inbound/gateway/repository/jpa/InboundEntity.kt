@@ -17,7 +17,7 @@ class InboundEntity(
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     @JoinColumn(name = "inbound_id")
     val inboundItems: List<InboundItemEntity>
 ) {

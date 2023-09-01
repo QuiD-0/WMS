@@ -15,13 +15,11 @@ interface RegisterInbound {
     @Transactional
     class RegisterInboundUseCase(
         private val productRepository: ProductRepository,
-        private val inboundRepository: InboundRepository,
-        private val inboundItemRepository: InboundItemRepository
+        private val inboundRepository: InboundRepository
     ) : RegisterInbound {
         override fun register(request: RegistInboundRequest) {
             request.item.map { productRepository.findById(it.productId)
                     .let { product -> it.toInboundItem(product) } }
-                .let { inboundItemRepository.saveAll(it) }
                 .also { inboundRepository.save(request.toInbound(it)) }
         }
     }
