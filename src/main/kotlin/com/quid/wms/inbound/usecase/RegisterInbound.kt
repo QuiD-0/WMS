@@ -1,5 +1,6 @@
 package com.quid.wms.inbound.usecase
 
+import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.repository.InboundRepository
 import com.quid.wms.inbound.gateway.repository.InboundItemRepository
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 
 interface RegisterInbound {
 
-    fun register(request: RegistInboundRequest)
+    fun register(request: RegistInboundRequest): Inbound
 
     @Service
     @Transactional
@@ -17,10 +18,10 @@ interface RegisterInbound {
         private val productRepository: ProductRepository,
         private val inboundRepository: InboundRepository
     ) : RegisterInbound {
-        override fun register(request: RegistInboundRequest) {
-            request.item.map { productRepository.findById(it.productId)
-                    .let { product -> it.toInboundItem(product) } }
-                .also { inboundRepository.save(request.toInbound(it)) }
+        override fun register(request: RegistInboundRequest) = with(request) {
+            item.map { productRepository.findById(it.productId)
+                .let { product -> it.toInboundItem(product) } }
+                .let { inboundRepository.save(toInbound(it)) }
         }
     }
 }

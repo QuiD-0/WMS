@@ -3,6 +3,7 @@ package com.quid.wms.inbound.gateway.repository
 import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.repository.jpa.InboundJpaRepository
 import com.quid.wms.inbound.gateway.repository.jpa.inboundEntity
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 interface InboundRepository {
@@ -19,7 +20,9 @@ interface InboundRepository {
         }
 
         override fun findById(id: Long): Inbound {
-            return jpaRepository.findById(id).orElseThrow().toInbound()
+            return jpaRepository.findByIdOrNull(id)
+                ?.toInbound()
+                ?: throw IllegalArgumentException("존재하지 않는 입고지시입니다.")
         }
 
         override fun save(inbound: Inbound): Inbound {

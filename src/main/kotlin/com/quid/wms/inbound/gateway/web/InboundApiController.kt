@@ -1,5 +1,6 @@
 package com.quid.wms.inbound.gateway.web
 
+import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
 import com.quid.wms.inbound.usecase.RegisterInbound
 import org.springframework.http.HttpStatus.CREATED
@@ -13,7 +14,6 @@ class InboundApiController(
 
     @PostMapping
     @ResponseStatus(CREATED)
-    fun request(@RequestBody request: RegistInboundRequest) {
+    fun request(@RequestBody request: RegistInboundRequest): Inbound =
         registerInbound.register(request)
-    }
 }
