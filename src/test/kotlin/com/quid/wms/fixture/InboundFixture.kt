@@ -2,13 +2,12 @@ package com.quid.wms.fixture
 
 import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.repository.InboundRepository
-import com.quid.wms.inbound.gateway.web.request.RegistItemRequest
-import com.quid.wms.inbound.gateway.web.request.RegisterInboundRequest
+import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
 import java.time.LocalDateTime
 
 class InboundFixture {
 
-    fun registRequest() = RegisterInboundRequest(
+    fun registRequest() = RegistInboundRequest(
         "title",
         "description",
         LocalDateTime.now(),

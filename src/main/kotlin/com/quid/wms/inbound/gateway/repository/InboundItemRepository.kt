@@ -1,6 +1,8 @@
 package com.quid.wms.inbound.gateway.repository
 
 import com.quid.wms.inbound.domain.InboundItem
+import com.quid.wms.inbound.gateway.repository.jpa.InboundItemJpaRepository
+import com.quid.wms.inbound.gateway.repository.jpa.inboundItemEntity
 import org.springframework.stereotype.Repository
 
 interface InboundItemRepository {
@@ -11,21 +13,23 @@ interface InboundItemRepository {
     fun saveAll(item: List<InboundItem>): List<InboundItem>
 
     @Repository
-    class InboundItemRepositoryImpl : InboundItemRepository {
+    class InboundItemRepositoryImpl(
+        private val jpaRepository: InboundItemJpaRepository
+    ) : InboundItemRepository {
         override fun findById(id: Long): InboundItem {
-            TODO()
+            return jpaRepository.findById(id).orElseThrow().toInboundItem()
         }
 
         override fun save(inboundItem: InboundItem): InboundItem {
-            TODO("Not yet implemented")
+            return jpaRepository.save(inboundItemEntity(inboundItem)).toInboundItem()
         }
 
         override fun findAll(): List<InboundItem> {
-            TODO("Not yet implemented")
+            return jpaRepository.findAll().map { it.toInboundItem() }
         }
 
         override fun saveAll(item: List<InboundItem>): List<InboundItem> {
-            TODO("Not yet implemented")
+            return jpaRepository.saveAll(item.map { inboundItemEntity(it) }).map { it.toInboundItem() }
         }
     }
 

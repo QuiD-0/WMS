@@ -2,7 +2,7 @@ package com.quid.wms.product.gateway.repository
 
 import com.quid.wms.product.domain.Product
 import com.quid.wms.product.gateway.repository.jpa.ProductJpaRepository
-import com.quid.wms.product.gateway.repository.jpa.fromDomain
+import com.quid.wms.product.gateway.repository.jpa.productEntity
 import org.springframework.stereotype.Repository
 
 interface ProductRepository {
@@ -21,7 +21,7 @@ interface ProductRepository {
         }
 
         override fun save(product: Product) {
-            jpaRepository.save(fromDomain(product))
+            jpaRepository.save(productEntity(product))
         }
 
         override fun deleteAll() {

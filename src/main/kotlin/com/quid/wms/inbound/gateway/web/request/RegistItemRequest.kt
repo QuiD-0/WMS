@@ -7,5 +7,5 @@ data class RegistItemRequest(
     val quantity: Long,
     val unitPrice: Long
 ) {
-    fun toDomain() = InboundItem(null, productId, quantity, unitPrice)
+    fun toInboundItem() = InboundItem(null, productId, quantity, unitPrice)
 }

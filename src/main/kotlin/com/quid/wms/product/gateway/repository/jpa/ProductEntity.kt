@@ -21,6 +21,7 @@ class ProductEntity(
     val brand: String,
     val maker: String,
     val origin: String,
+    @Enumerated(STRING)
     val category: Category,
     @Enumerated(STRING)
     val temperatureZone: TemperatureZone,
@@ -48,7 +49,7 @@ class ProductEntity(
     )
 }
 
-fun fromDomain(product: Product) = ProductEntity(
+fun productEntity(product: Product) = ProductEntity(
     product.id,
     product.name,
     product.code,
