@@ -7,8 +7,8 @@ import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
 @Entity
-@Table(name = "inbound_item")
 @Comment("입고 상품")
+@Table(name = "inbound_item")
 class InboundItemEntity(
     @Id
     @Column(name = "inbound_item_id")

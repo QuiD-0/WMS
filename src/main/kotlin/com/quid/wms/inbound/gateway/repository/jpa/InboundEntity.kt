@@ -6,8 +6,8 @@ import org.hibernate.annotations.Comment
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "inbound")
 @Comment("입고")
+@Table(name = "inbound")
 class InboundEntity(
     @Id
     @Column(name = "inbound_id")

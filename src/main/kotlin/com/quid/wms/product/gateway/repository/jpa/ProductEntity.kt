@@ -9,8 +9,8 @@ import jakarta.persistence.EnumType.STRING
 import org.hibernate.annotations.Comment
 
 @Entity
-@Table(name = "product")
 @Comment("상품")
+@Table(name = "product")
 class ProductEntity(
     @Id
     @Column(name = "product_id")
