@@ -17,6 +17,7 @@ class ProductEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val name: String,
+    @Column(unique = true)
     val code: String,
     val description: String,
     val brand: String,
