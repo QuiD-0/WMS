@@ -29,4 +29,18 @@ class ConfirmInboundApiTest {
             .log().all()
             .statusCode(HttpStatus.NO_CONTENT.value())
     }
+
+    @Test
+    @DisplayName("입고 승인 실패 api")
+    fun registInboundFail() {
+        val inbound = inboundRepository.save(InboundFixture().completedInbound())
+
+        RestAssured.given().log().all()
+            .contentType(ContentType.JSON)
+            .`when`()
+            .patch("/api/inbounds/${inbound.id}/confirm")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+    }
 }

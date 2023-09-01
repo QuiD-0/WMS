@@ -20,8 +20,8 @@ class InboundItemFixture {
     )
 
     fun repository() = InboundItemRepositoryFixture()
-    fun inboundItem(): InboundItem = InboundItem(
-        id = 1,
+    fun inboundItem(id: Long? = 1): InboundItem = InboundItem(
+        id = id,
         product = ProductFixture().product(),
         quantity = 1,
         unitPrice = 1000

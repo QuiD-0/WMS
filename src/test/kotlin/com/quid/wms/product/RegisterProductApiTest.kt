@@ -18,6 +18,9 @@ import java.time.LocalDateTime
 @ApiTest
 class RegisterProductApiTest {
 
+    @Autowired
+    private lateinit var productRepository: ProductRepository
+
     @Test
     @DisplayName("상품 등록 api")
     fun registerProduct() {
@@ -31,6 +34,22 @@ class RegisterProductApiTest {
             .then()
             .log().all()
             .statusCode(HttpStatus.CREATED.value())
+    }
+
+    @Test
+    @DisplayName("상품 등록 실패 api")
+    fun registerProductFail() {
+        productRepository.save(ProductFixture().product("code"))
+        val request = ProductFixture().registProductRequest("code")
+
+        RestAssured.given().log().all()
+            .contentType(ContentType.JSON)
+            .body(request)
+            .`when`()
+            .post("/api/products")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
     }
 }
 

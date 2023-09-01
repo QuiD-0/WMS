@@ -18,26 +18,26 @@ class InboundFixture {
         )
     )
 
-    fun inbound() = Inbound(
+    fun inbound(item : Long? = 1) = Inbound(
         1,
         "title",
         "description",
         LocalDateTime.now(),
         LocalDateTime.now().plusDays(1),
         listOf(
-            InboundItemFixture().inboundItem()
+            InboundItemFixture().inboundItem(item)
         ),
         InboundStatus.REQUESTED
     )
 
-    fun completedInbound() = Inbound(
+    fun completedInbound(item : Long? = 1) = Inbound(
         1,
         "title",
         "description",
         LocalDateTime.now(),
         LocalDateTime.now().plusDays(1),
         listOf(
-            InboundItemFixture().inboundItem()
+            InboundItemFixture().inboundItem(item)
         ),
         InboundStatus.COMPLETED
     )

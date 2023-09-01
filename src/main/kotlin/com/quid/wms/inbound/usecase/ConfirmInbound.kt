@@ -15,8 +15,8 @@ interface ConfirmInbound {
     ): ConfirmInbound {
 
         override fun execute(inboundId: Long) {
-            inboundRepository.findById(inboundId)
-                .let { inboundRepository.save(it.confirm()) }
+            inboundRepository.findById(inboundId).confirm()
+                .also { inboundRepository.save(it) }
         }
 
     }
