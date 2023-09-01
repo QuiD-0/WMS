@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import java.time.LocalDateTime
 
 @ApiTest
 class RegisterProductApiTest {
@@ -20,7 +21,8 @@ class RegisterProductApiTest {
     @Test
     @DisplayName("상품 등록 api")
     fun registerProduct() {
-        val request = ProductFixture().registProductRequest()
+        val dateCode: String = LocalDateTime.now().toString()
+        val request = ProductFixture().registProductRequest(dateCode)
 
         RestAssured.given().log().all()
             .contentType(ContentType.JSON)

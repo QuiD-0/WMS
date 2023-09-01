@@ -18,6 +18,7 @@ class RegisterInboundTest {
     @DisplayName("입고 등록")
     fun registerInbound() {
         val request = InboundFixture().registRequest()
+        productRepository.save(ProductFixture().product())
 
         registerInbound.register(request)
 
@@ -28,6 +29,7 @@ class RegisterInboundTest {
     @DisplayName("아이템 등록")
     fun registerInboundItem() {
         val item = InboundItemFixture().item()
+        productRepository.save(ProductFixture().product())
 
         itemRepository.save(item)
 

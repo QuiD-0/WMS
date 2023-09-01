@@ -23,9 +23,9 @@ class ProductFixture {
         ProductSize(100L, 100L, 100L)
     )
 
-    fun registProductRequest() = RegistProductRequest(
+    fun registProductRequest(code: String) = RegistProductRequest(
         "name",
-        "code",
+        code,
         "description",
         "brand",
         "maker",
@@ -48,8 +48,9 @@ class ProductRepositoryFixture: ProductRepository {
         return products.values.toList()
     }
 
-    override fun save(product: Product) {
+    override fun save(product: Product): Product {
         products[product.id!!] = product
+        return product
     }
 
     override fun deleteAll() {
