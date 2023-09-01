@@ -5,6 +5,7 @@ import com.quid.wms.product.domain.Product
 import com.quid.wms.product.domain.ProductSize
 import com.quid.wms.product.domain.TemperatureZone
 import com.quid.wms.product.gateway.repository.ProductRepository
+import com.quid.wms.product.gateway.web.request.RegistProductRequest
 
 class ProductFixture {
 
@@ -20,6 +21,21 @@ class ProductFixture {
         TemperatureZone.ROOM_TEMPERATURE,
         1000L,
         ProductSize(100L, 100L, 100L)
+    )
+
+    fun registProductRequest() = RegistProductRequest(
+        "name",
+        "code",
+        "description",
+        "brand",
+        "maker",
+        "origin",
+        Category.ELECTRONICS,
+        TemperatureZone.ROOM_TEMPERATURE,
+        1000L,
+        100L,
+        100L,
+        100L
     )
 
     fun productRepository() = ProductRepositoryFixture()

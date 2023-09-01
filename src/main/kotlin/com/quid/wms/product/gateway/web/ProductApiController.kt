@@ -2,16 +2,16 @@ package com.quid.wms.product.gateway.web
 
 import com.quid.wms.product.gateway.web.request.RegistProductRequest
 import com.quid.wms.product.usecase.RegistProduct
-import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.CREATED
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 class ProductApiController(
     private val registProduct: RegistProduct
 ) {
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     fun request(@RequestBody request: RegistProductRequest) {
         val product = request.toDomain()
         registProduct.register(product)

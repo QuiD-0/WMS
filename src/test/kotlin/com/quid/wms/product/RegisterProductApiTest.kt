@@ -1,6 +1,7 @@
 package com.quid.wms.product
 
 import com.quid.wms.annotation.ApiTest
+import com.quid.wms.fixture.ProductFixture
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.TemperatureZone
 import com.quid.wms.product.gateway.repository.ProductRepository
@@ -27,26 +28,13 @@ class RegisterProductApiTest {
     @Test
     @DisplayName("상품 등록 api")
     fun registerProduct() {
-        val request = RegistProductRequest(
-            "name",
-            "code",
-            "description",
-            "brand",
-            "maker",
-            "origin",
-            Category.ELECTRONICS,
-            TemperatureZone.ROOM_TEMPERATURE,
-            1000L,
-            100L,
-            100L,
-            100L
-        )
+        val request = ProductFixture().registProductRequest()
 
         RestAssured.given().log().all()
             .contentType(ContentType.JSON)
             .body(request)
             .`when`()
-            .post("/products")
+            .post("/api/products")
             .then()
             .log().all()
             .statusCode(HttpStatus.CREATED.value())
