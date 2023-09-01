@@ -3,5 +3,5 @@ package com.quid.wms.product.gateway.repository.jpa
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface ProductJpaRepository : JpaRepository<ProductEntity, Long> {
-    fun existsByCode(code: String): Boolean
+    fun findByCode(code: String): ProductEntity?
 }
