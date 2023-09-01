@@ -21,8 +21,7 @@ class RegisterProductApiTest {
     @Test
     @DisplayName("상품 등록 api")
     fun registerProduct() {
-        val dateCode: String = LocalDateTime.now().toString()
-        val request = ProductFixture().registProductRequest(dateCode)
+        val request = ProductFixture().registProductRequest()
 
         RestAssured.given().log().all()
             .contentType(ContentType.JSON)

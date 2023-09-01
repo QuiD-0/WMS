@@ -6,13 +6,14 @@ import com.quid.wms.product.domain.ProductSize
 import com.quid.wms.product.domain.TemperatureZone
 import com.quid.wms.product.gateway.repository.ProductRepository
 import com.quid.wms.product.gateway.web.request.RegistProductRequest
+import java.time.LocalDateTime
 
 class ProductFixture {
 
-    fun product() = Product(
+    fun product(code: String = LocalDateTime.now().toString()) = Product(
         1L,
         "name",
-        "code",
+        code,
         "description",
         "brand",
         "maker",
@@ -23,7 +24,7 @@ class ProductFixture {
         ProductSize(100L, 100L, 100L)
     )
 
-    fun registProductRequest(code: String) = RegistProductRequest(
+    fun registProductRequest(code: String = LocalDateTime.now().toString()) = RegistProductRequest(
         "name",
         code,
         "description",
@@ -49,6 +50,7 @@ class ProductRepositoryFixture: ProductRepository {
     }
 
     override fun save(product: Product): Product {
+        if(products.containsKey(product.id)) throw IllegalArgumentException("Product already exists")
         products[product.id!!] = product
         return product
     }
