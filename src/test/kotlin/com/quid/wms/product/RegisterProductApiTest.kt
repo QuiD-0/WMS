@@ -17,14 +17,6 @@ import org.springframework.http.HttpStatus
 @ApiTest
 class RegisterProductApiTest {
 
-    @Autowired
-    lateinit var productRepository: ProductRepository
-
-    @BeforeEach
-    fun setUp() {
-        productRepository.deleteAll()
-    }
-
     @Test
     @DisplayName("상품 등록 api")
     fun registerProduct() {

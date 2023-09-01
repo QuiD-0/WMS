@@ -10,6 +10,7 @@ interface ProductRepository {
     fun save(product: Product)
     fun deleteAll()
     fun isExistByCode(code: String): Boolean
+    fun findById(productId: Long): Product
 
     @Repository
     class ProductRepositoryImpl(
@@ -17,7 +18,7 @@ interface ProductRepository {
     ): ProductRepository {
 
         override fun findAll(): List<Product> {
-            return jpaRepository.findAll().map { it.toDomain() }
+            return jpaRepository.findAll().map { it.toProduct() }
         }
 
         override fun save(product: Product) {
@@ -30,6 +31,10 @@ interface ProductRepository {
 
         override fun isExistByCode(code: String): Boolean {
             return jpaRepository.existsByCode(code)
+        }
+
+        override fun findById(productId: Long): Product {
+            return jpaRepository.findById(productId).orElseThrow().toProduct()
         }
     }
 }

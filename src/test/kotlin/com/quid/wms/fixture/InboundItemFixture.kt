@@ -14,7 +14,7 @@ class InboundItemFixture {
 
     fun item() = InboundItem(
         id = 1,
-        productId = 1,
+        product = ProductFixture().product(),
         quantity = 1,
         unitPrice = 1000
     )

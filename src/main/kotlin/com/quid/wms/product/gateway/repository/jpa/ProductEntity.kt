@@ -13,6 +13,7 @@ import org.hibernate.annotations.Comment
 @Comment("상품")
 class ProductEntity(
     @Id
+    @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val name: String,
@@ -30,7 +31,7 @@ class ProductEntity(
     val heightInMillimeters: Long,
     val lengthInMillimeters: Long,
 ) {
-    fun toDomain() = Product(
+    fun toProduct() = Product(
         id,
         name,
         code,

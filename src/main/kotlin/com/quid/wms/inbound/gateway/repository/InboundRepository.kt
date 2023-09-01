@@ -12,7 +12,7 @@ interface InboundRepository {
 
     @Repository
     class InboundRepositoryImpl(
-        private val jpaRepository: InboundJpaRepository
+        private val jpaRepository: InboundJpaRepository,
     ) : InboundRepository {
         override fun findAll(): List<Inbound> {
             return jpaRepository.findAll().map { it.toInbound() }

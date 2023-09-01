@@ -59,4 +59,8 @@ class ProductRepositoryFixture: ProductRepository {
     override fun isExistByCode(code: String): Boolean {
         return products.values.any { it.code == code }
     }
+
+    override fun findById(productId: Long): Product {
+        return products[productId]!!
+    }
 }

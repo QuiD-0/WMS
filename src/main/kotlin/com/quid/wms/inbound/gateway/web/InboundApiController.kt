@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus.CREATED
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/inbound")
+@RequestMapping("/api/inbounds")
 class InboundApiController(
     private val registerInbound: RegisterInbound
 ) {

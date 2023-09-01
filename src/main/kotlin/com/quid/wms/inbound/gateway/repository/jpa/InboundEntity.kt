@@ -10,13 +10,15 @@ import java.time.LocalDateTime
 @Comment("입고")
 class InboundEntity(
     @Id
+    @Column(name = "inbound_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val title: String,
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
-    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany
+    @JoinColumn(name = "inbound_id")
     val inboundItems: List<InboundItemEntity>
 ) {
     fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, inboundItems.map { it.toInboundItem() })

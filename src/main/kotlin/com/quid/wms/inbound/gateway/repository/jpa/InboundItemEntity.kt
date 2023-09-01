@@ -1,6 +1,8 @@
 package com.quid.wms.inbound.gateway.repository.jpa
 
 import com.quid.wms.inbound.domain.InboundItem
+import com.quid.wms.product.gateway.repository.jpa.ProductEntity
+import com.quid.wms.product.gateway.repository.jpa.productEntity
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
@@ -9,18 +11,21 @@ import org.hibernate.annotations.Comment
 @Comment("입고 상품")
 class InboundItemEntity(
     @Id
+    @Column(name = "inbound_item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val productId: Long,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    val product: ProductEntity,
     val quantity: Long,
     val unitPrice: Long
 ) {
-    fun toInboundItem() = InboundItem(id, productId, quantity, unitPrice)
+    fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice)
 }
 
 fun inboundItemEntity(inboundItem: InboundItem) = InboundItemEntity(
     inboundItem.id,
-    inboundItem.productId,
+    productEntity(inboundItem.product),
     inboundItem.quantity,
     inboundItem.unitPrice
 )
