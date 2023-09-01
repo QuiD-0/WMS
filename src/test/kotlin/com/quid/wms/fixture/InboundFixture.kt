@@ -1,6 +1,7 @@
 package com.quid.wms.fixture
 
 import com.quid.wms.inbound.domain.Inbound
+import com.quid.wms.inbound.domain.InboundStatus
 import com.quid.wms.inbound.gateway.repository.InboundRepository
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
 import java.time.LocalDateTime
@@ -15,6 +16,30 @@ class InboundFixture {
         listOf(
             InboundItemFixture().registItemRequest()
         )
+    )
+
+    fun inbound() = Inbound(
+        1,
+        "title",
+        "description",
+        LocalDateTime.now(),
+        LocalDateTime.now().plusDays(1),
+        listOf(
+            InboundItemFixture().inboundItem()
+        ),
+        InboundStatus.REQUESTED
+    )
+
+    fun completedInbound() = Inbound(
+        1,
+        "title",
+        "description",
+        LocalDateTime.now(),
+        LocalDateTime.now().plusDays(1),
+        listOf(
+            InboundItemFixture().inboundItem()
+        ),
+        InboundStatus.COMPLETED
     )
 
     fun repository() = InboundRepositoryFixture()

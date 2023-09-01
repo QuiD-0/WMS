@@ -1,7 +1,9 @@
 package com.quid.wms.inbound.gateway.repository.jpa
 
 import com.quid.wms.inbound.domain.Inbound
+import com.quid.wms.inbound.domain.InboundStatus
 import jakarta.persistence.*
+import jakarta.persistence.EnumType.*
 import org.hibernate.annotations.Comment
 import java.time.LocalDateTime
 
@@ -19,9 +21,11 @@ class InboundEntity(
     val estimateArrivalAt: LocalDateTime,
     @OneToMany(cascade = [CascadeType.PERSIST])
     @JoinColumn(name = "inbound_id")
-    val inboundItems: List<InboundItemEntity>
+    val inboundItems: List<InboundItemEntity>,
+    @Enumerated(STRING)
+    val status: InboundStatus
 ) {
-    fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, inboundItems.map { it.toInboundItem() })
+    fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, inboundItems.map { it.toInboundItem() }, status)
 }
 
 fun inboundEntity(inbound: Inbound) = InboundEntity(
@@ -30,5 +34,6 @@ fun inboundEntity(inbound: Inbound) = InboundEntity(
     inbound.description,
     inbound.orderRequestAt,
     inbound.estimateArrivalAt,
-    inbound.inboundItems.map { inboundItemEntity(it) }
+    inbound.inboundItems.map { inboundItemEntity(it) },
+    inbound.status
 )
