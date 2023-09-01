@@ -16,29 +16,21 @@ interface ProductRepository {
     @Repository
     class ProductRepositoryImpl(
         private val jpaRepository: ProductJpaRepository
-    ): ProductRepository {
+    ) : ProductRepository {
 
-        override fun findAll(): List<Product> {
-            return jpaRepository.findAll().map { it.toProduct() }
-        }
+        override fun findAll(): List<Product> = jpaRepository.findAll().map { it.toProduct() }
 
-        override fun save(product: Product): Product {
-            return jpaRepository.save(productEntity(product)).toProduct()
-        }
 
-        override fun deleteAll() {
-            jpaRepository.deleteAll()
-        }
+        override fun save(product: Product): Product =
+            jpaRepository.save(productEntity(product)).toProduct()
 
-        override fun isExistByCode(code: String): Boolean {
-            return jpaRepository.existsByCode(code)
-        }
+        override fun deleteAll() = jpaRepository.deleteAll()
 
-        override fun findById(productId: Long): Product {
-            return jpaRepository.findByIdOrNull(productId)
-                ?.toProduct()
-                ?:throw IllegalArgumentException("존재하지 않는 상품입니다.")
-        }
+        override fun isExistByCode(code: String): Boolean = jpaRepository.existsByCode(code)
+
+        override fun findById(productId: Long): Product = jpaRepository.findByIdOrNull(productId)
+            ?.toProduct()
+            ?: throw IllegalArgumentException("존재하지 않는 상품입니다.")
     }
 }
 

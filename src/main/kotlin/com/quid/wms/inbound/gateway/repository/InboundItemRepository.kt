@@ -17,23 +17,19 @@ interface InboundItemRepository {
     class InboundItemRepositoryImpl(
         private val jpaRepository: InboundItemJpaRepository
     ) : InboundItemRepository {
-        override fun findById(id: Long): InboundItem {
-            return jpaRepository.findByIdOrNull(id)
+        override fun findById(id: Long): InboundItem =
+            jpaRepository.findByIdOrNull(id)
                 ?.toInboundItem()
                 ?: throw IllegalArgumentException("존재하지 않는 입고상품입니다.")
-        }
 
-        override fun save(inboundItem: InboundItem): InboundItem {
-            return jpaRepository.save(inboundItemEntity(inboundItem)).toInboundItem()
-        }
+        override fun save(inboundItem: InboundItem): InboundItem =
+            jpaRepository.save(inboundItemEntity(inboundItem)).toInboundItem()
 
-        override fun findAll(): List<InboundItem> {
-            return jpaRepository.findAll().map { it.toInboundItem() }
-        }
+        override fun findAll(): List<InboundItem> =
+            jpaRepository.findAll().map { it.toInboundItem() }
 
-        override fun saveAll(item: List<InboundItem>): List<InboundItem> {
-            return jpaRepository.saveAll(item.map { inboundItemEntity(it) }).map { it.toInboundItem() }
-        }
+        override fun saveAll(item: List<InboundItem>): List<InboundItem> =
+            jpaRepository.saveAll(item.map { inboundItemEntity(it) }).map { it.toInboundItem() }
     }
 
 }
