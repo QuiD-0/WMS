@@ -11,7 +11,7 @@ fun interface RejectInbound {
         class RejectInboundImpl(private val inboundRepository: InboundRepository) : RejectInbound {
             override fun execute(inboundId: Long) {
                 inboundRepository.findById(inboundId).reject()
-                        .also { inboundRepository.save(it) }
+                    .also { inboundRepository.save(it) }
             }
         }
 }
