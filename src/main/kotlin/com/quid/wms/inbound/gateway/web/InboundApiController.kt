@@ -2,6 +2,7 @@ package com.quid.wms.inbound.gateway.web
 
 import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
+import com.quid.wms.inbound.gateway.web.request.RejectRequest
 import com.quid.wms.inbound.usecase.ConfirmInbound
 import com.quid.wms.inbound.usecase.RegisterInbound
 import com.quid.wms.inbound.usecase.RejectInbound
@@ -30,7 +31,7 @@ class InboundApiController(
 
     @PatchMapping("/{id}/reject")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun reject(@PathVariable id: Long) {
-        rejectInbound.execute(id)
+    fun reject(@PathVariable id: Long, @RequestBody request: RejectRequest) {
+        rejectInbound.execute(id, request.rejectMessage)
     }
 }

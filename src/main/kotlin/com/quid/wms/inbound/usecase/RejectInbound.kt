@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service
 
 fun interface RejectInbound {
 
-        fun execute(inboundId: Long)
+        fun execute(inboundId: Long, rejectMessage: String)
 
         @Service
         class RejectInboundImpl(private val inboundRepository: InboundRepository) : RejectInbound {
-            override fun execute(inboundId: Long) {
-                inboundRepository.findById(inboundId).reject()
+            override fun execute(inboundId: Long, rejectMessage: String) {
+                inboundRepository.findById(inboundId).reject(rejectMessage)
                     .also { inboundRepository.save(it) }
             }
         }

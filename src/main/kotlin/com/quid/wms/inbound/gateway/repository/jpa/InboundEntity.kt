@@ -23,9 +23,10 @@ class InboundEntity(
     @JoinColumn(name = "inbound_id")
     val inboundItems: List<InboundItemEntity>,
     @Enumerated(STRING)
-    val status: InboundStatus
+    val status: InboundStatus,
+    val rejectReason: String,
 ) {
-    fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, inboundItems.map { it.toInboundItem() }, status)
+    fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, inboundItems.map { it.toInboundItem() }, status, rejectReason)
 }
 
 fun inboundEntity(inbound: Inbound) = InboundEntity(
@@ -35,5 +36,6 @@ fun inboundEntity(inbound: Inbound) = InboundEntity(
     inbound.orderRequestAt,
     inbound.estimateArrivalAt,
     inbound.inboundItems.map { inboundItemEntity(it) },
-    inbound.status
+    inbound.status,
+    inbound.rejectReason
 )
