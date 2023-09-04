@@ -17,7 +17,7 @@ class RejectInboundTest{
     fun confirm(){
         inboundRepository.save(InboundFixture().inbound())
 
-        rejectInbound.execute(1)
+        rejectInbound.execute(1, "reject")
 
         assert(inboundRepository.findById(1).status == InboundStatus.REJECTED)
     }
@@ -27,6 +27,6 @@ class RejectInboundTest{
     fun confirmFail(){
         inboundRepository.save(InboundFixture().completedInbound())
 
-        assertThrows<IllegalStateException> { rejectInbound.execute(1) }
+        assertThrows<IllegalStateException> { rejectInbound.execute(1, "reject") }
     }
 }
