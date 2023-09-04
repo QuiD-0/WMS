@@ -8,7 +8,7 @@ import com.quid.wms.product.gateway.repository.ProductRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-interface RegisterInbound {
+fun interface RegisterInbound {
 
     fun register(request: RegistInboundRequest): Inbound
 
