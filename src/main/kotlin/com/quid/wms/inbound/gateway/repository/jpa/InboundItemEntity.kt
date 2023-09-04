@@ -30,5 +30,6 @@ fun inboundItemEntity(inboundItem: InboundItem) = InboundItemEntity(
     inboundItem.id,
     productEntity(inboundItem.product),
     inboundItem.quantity,
-    inboundItem.unitPrice
+    inboundItem.unitPrice,
+    inboundItem.lpnList.map { lpnEntity(it) }
 )

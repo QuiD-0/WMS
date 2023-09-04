@@ -18,3 +18,9 @@ class LPNEntity(
 ) {
     fun toLPN() = LPN(id, lpnBarcode, expirationAt)
 }
+
+fun lpnEntity(lpn: LPN) = LPNEntity(
+    lpn.id,
+    lpn.lpnBarcode,
+    lpn.expirationAt
+)
