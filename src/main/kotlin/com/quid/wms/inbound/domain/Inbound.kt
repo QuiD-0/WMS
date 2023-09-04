@@ -1,5 +1,6 @@
 package com.quid.wms.inbound.domain
 
+import com.quid.wms.inbound.domain.InboundStatus.*
 import java.time.LocalDateTime
 
 data class Inbound(
@@ -21,12 +22,12 @@ data class Inbound(
         require(inboundItems.isNotEmpty()) { "items is invalid" }
     }
 
-    fun confirm() = isRequested().copy(status = InboundStatus.CONFIRMED)
+    fun confirm() = isRequested().copy(status = CONFIRMED)
 
-    fun reject(message: String) = isRequested().copy(status = InboundStatus.REJECTED, rejectReason = message)
+    fun reject(message: String) = isRequested().copy(status = REJECTED, rejectReason = message)
 
     private fun isRequested(): Inbound {
-        if (this.status != InboundStatus.REQUESTED) throw IllegalStateException("입고 요청 상태가 아닙니다.")
+        if (this.status != REQUESTED) throw IllegalStateException("입고 요청 상태가 아닙니다.")
         return this
     }
 }
