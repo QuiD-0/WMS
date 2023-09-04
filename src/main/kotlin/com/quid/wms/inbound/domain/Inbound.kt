@@ -20,5 +20,8 @@ data class Inbound(
     }
 
     fun confirm() = if (status == InboundStatus.REQUESTED) copy(status = InboundStatus.CONFIRMED)
-        else throw IllegalStateException("이미 입고지시가 확정되었습니다.")
+        else throw IllegalStateException("입고 요청상태가 아닙니다.")
+
+    fun reject() = if (status == InboundStatus.REQUESTED) copy(status = InboundStatus.REJECTED)
+        else throw IllegalStateException("입고 요청상태가 아닙니다.")
 }
