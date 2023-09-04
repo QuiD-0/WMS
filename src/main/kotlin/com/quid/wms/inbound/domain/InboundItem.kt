@@ -6,7 +6,8 @@ data class InboundItem(
     val id: Long? = null,
     val product: Product,
     val quantity: Long,
-    val unitPrice: Long
+    val unitPrice: Long,
+    val lpnList: List<LPN> = emptyList()
 ){
     init {
         require(quantity > 0) { "quantity is invalid" }

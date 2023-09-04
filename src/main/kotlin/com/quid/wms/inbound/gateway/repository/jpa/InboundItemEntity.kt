@@ -19,10 +19,11 @@ class InboundItemEntity(
     val product: ProductEntity,
     val quantity: Long,
     val unitPrice: Long,
-    @OneToMany(mappedBy = "inboundItem")
+    @OneToMany(cascade = [CascadeType.PERSIST])
+    @JoinColumn(name = "inbound_item_id")
     val lpnList: List<LPNEntity> = emptyList()
 ) {
-    fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice)
+    fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice, lpnList.map { it.toLPN() })
 }
 
 fun inboundItemEntity(inboundItem: InboundItem) = InboundItemEntity(
