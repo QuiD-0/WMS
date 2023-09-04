@@ -4,5 +4,6 @@ enum class InboundStatus {
     REQUESTED,
     CONFIRMED,
     CANCELED,
-    COMPLETED
+    COMPLETED,
+    REJECTED,
 }
