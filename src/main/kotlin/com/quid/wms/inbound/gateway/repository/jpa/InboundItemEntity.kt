@@ -18,7 +18,9 @@ class InboundItemEntity(
     @JoinColumn(name = "product_id")
     val product: ProductEntity,
     val quantity: Long,
-    val unitPrice: Long
+    val unitPrice: Long,
+    @OneToMany(mappedBy = "inboundItem")
+    val lpnList: List<LPNEntity> = emptyList()
 ) {
     fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice)
 }
