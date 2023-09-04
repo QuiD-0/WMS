@@ -19,9 +19,12 @@ data class Inbound(
         require(inboundItems.isNotEmpty()) { "items is invalid" }
     }
 
-    fun confirm() = if (status == InboundStatus.REQUESTED) copy(status = InboundStatus.CONFIRMED)
-        else throw IllegalStateException("입고 요청상태가 아닙니다.")
+    fun confirm() = isRequested().copy(status = InboundStatus.CONFIRMED)
 
-    fun reject() = if (status == InboundStatus.REQUESTED) copy(status = InboundStatus.REJECTED)
-        else throw IllegalStateException("입고 요청상태가 아닙니다.")
+    fun reject() = isRequested().copy(status = InboundStatus.REJECTED)
+
+    private fun isRequested(): Inbound {
+        if (this.status != InboundStatus.REQUESTED) throw IllegalStateException("입고 요청 상태가 아닙니다.")
+        return this
+    }
 }

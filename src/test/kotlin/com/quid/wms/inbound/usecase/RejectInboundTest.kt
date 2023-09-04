@@ -2,21 +2,31 @@ package com.quid.wms.inbound.usecase
 
 import com.quid.wms.fixture.InboundFixture
 import com.quid.wms.inbound.domain.InboundStatus
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
 
 class RejectInboundTest{
 
+    private val inboundRepository = InboundFixture().repository()
+    private val rejectInbound = RejectInbound.RejectInboundImpl(inboundRepository)
+
     @Test
-    fun rejectInbound(){
-        val inboundId = 1L
-        val inboundRepository = InboundFixture().repository()
+    @DisplayName("입고 거절")
+    fun confirm(){
         inboundRepository.save(InboundFixture().inbound())
-        val rejectInbound = RejectInbound.RejectInboundImpl(inboundRepository)
 
-        rejectInbound.execute(inboundId)
+        rejectInbound.execute(1)
 
-        val inbound = inboundRepository.findById(inboundId)
-        assertEquals(inbound.status, InboundStatus.REJECTED)
+        assert(inboundRepository.findById(1).status == InboundStatus.REJECTED)
+    }
+
+    @Test
+    @DisplayName("입고 거절 실패")
+    fun confirmFail(){
+        inboundRepository.save(InboundFixture().completedInbound())
+
+        assertThrows<IllegalStateException> { rejectInbound.execute(1) }
     }
 }

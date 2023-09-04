@@ -1,6 +1,7 @@
 package com.quid.wms.inbound.usecase
 
 import com.quid.wms.fixture.InboundFixture
+import com.quid.wms.inbound.domain.InboundStatus
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -16,7 +17,9 @@ class ConfirmInboundTest{
     fun confirm(){
         inboundRepository.save(InboundFixture().inbound())
 
-        assertDoesNotThrow { confirmInbound.execute(1) }
+        confirmInbound.execute(1)
+
+        assert(inboundRepository.findById(1).status == InboundStatus.CONFIRMED)
     }
 
     @Test
