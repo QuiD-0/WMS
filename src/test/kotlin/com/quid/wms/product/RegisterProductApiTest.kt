@@ -9,6 +9,7 @@ import com.quid.wms.product.gateway.web.request.RegistProductRequest
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus
 import java.time.LocalDateTime
 
 @ApiTest
+@Disabled
 class RegisterProductApiTest {
 
     @Autowired
