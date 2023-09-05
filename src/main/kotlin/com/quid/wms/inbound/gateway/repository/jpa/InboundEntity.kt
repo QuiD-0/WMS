@@ -3,7 +3,9 @@ package com.quid.wms.inbound.gateway.repository.jpa
 import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.domain.InboundStatus
 import jakarta.persistence.*
-import jakarta.persistence.EnumType.*
+import jakarta.persistence.CascadeType.MERGE
+import jakarta.persistence.CascadeType.PERSIST
+import jakarta.persistence.EnumType.STRING
 import org.hibernate.annotations.Comment
 import java.time.LocalDateTime
 
@@ -19,7 +21,7 @@ class InboundEntity(
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
-    @OneToMany(cascade = [CascadeType.PERSIST])
+    @OneToMany(cascade = [PERSIST, MERGE])
     @JoinColumn(name = "inbound_id")
     val inboundItems: List<InboundItemEntity>,
     @Enumerated(STRING)

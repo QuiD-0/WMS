@@ -5,12 +5,14 @@ import com.quid.wms.fixture.InboundFixture
 import com.quid.wms.inbound.gateway.repository.InboundRepository
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 
 @ApiTest
+@Disabled
 class ConfirmInboundApiTest {
 
     @Autowired

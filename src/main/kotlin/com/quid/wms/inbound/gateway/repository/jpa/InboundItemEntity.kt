@@ -4,6 +4,7 @@ import com.quid.wms.inbound.domain.InboundItem
 import com.quid.wms.product.gateway.repository.jpa.ProductEntity
 import com.quid.wms.product.gateway.repository.jpa.productEntity
 import jakarta.persistence.*
+import jakarta.persistence.CascadeType.*
 import org.hibernate.annotations.Comment
 
 @Entity
@@ -19,9 +20,9 @@ class InboundItemEntity(
     val product: ProductEntity,
     val quantity: Long,
     val unitPrice: Long,
-    @OneToMany(cascade = [CascadeType.PERSIST])
-    @JoinColumn(name = "inbound_item_id")
-    val lpnList: List<LPNEntity> = emptyList()
+    @OneToMany(cascade = [PERSIST, MERGE])
+    @JoinColumn(name = "lpn_id")
+    val lpnList: List<LPNEntity> = listOf()
 ) {
     fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice, lpnList.map { it.toLPN() })
 }

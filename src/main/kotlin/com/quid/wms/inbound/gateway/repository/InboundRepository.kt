@@ -17,14 +17,11 @@ interface InboundRepository {
     class InboundRepositoryImpl(
         private val jpaRepository: InboundJpaRepository,
     ) : InboundRepository {
-        @Transactional(readOnly = true)
         override fun findAll(): List<Inbound> = jpaRepository.findAll().map { it.toInbound() }
 
-        @Transactional(readOnly = true)
         override fun findById(id: Long): Inbound = jpaRepository.findByIdOrNull(id)?.toInbound()
             ?: throw EntityNotFoundException("존재하지 않는 입고지시입니다.")
 
-        @Transactional
         override fun save(inbound: Inbound): Inbound =
             jpaRepository.save(inboundEntity(inbound)).toInbound()
     }

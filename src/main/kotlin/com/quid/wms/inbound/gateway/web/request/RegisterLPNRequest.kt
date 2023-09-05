@@ -3,7 +3,7 @@ package com.quid.wms.inbound.gateway.web.request
 import com.quid.wms.inbound.domain.LPN
 import java.time.LocalDateTime
 
-class RegisterLPNRequest(
+data class RegisterLPNRequest(
     val inboundItemId: Long,
     val lpnBarcode: String,
     val expirationAt: LocalDateTime,
