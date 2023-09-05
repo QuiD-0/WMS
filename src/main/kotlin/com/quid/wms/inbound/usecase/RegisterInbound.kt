@@ -19,9 +19,9 @@ fun interface RegisterInbound {
         private val inboundRepository: InboundRepository
     ) : RegisterInbound {
         override fun register(request: RegistInboundRequest) = with(request) {
-            item.map { productRepository.findById(it.productId)
+            this.item.map { productRepository.findById(it.productId)
                 .let { product -> it.toInboundItem(product) } }
-                .let { inboundRepository.save(toInbound(it)) }
+                .let { inboundRepository.save(this.toInbound(it)) }
         }
     }
 }

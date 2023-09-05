@@ -17,8 +17,8 @@ fun interface RegisterLPN {
     ) : RegisterLPN {
         override fun execute(registerLPNRequest: RegisterLPNRequest): InboundItem = with(registerLPNRequest) {
             inboundItemRepository.findById(inboundItemId)
-                .registerLPN(toLPN())
-                .also { inboundItemRepository.save(it) }
+                .registerLPN(this.toLPN())
+                .let { inboundItemRepository.save(it) }
         }
     }
 }
