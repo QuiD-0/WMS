@@ -28,7 +28,7 @@ class RegisterInboundTest {
     @Test
     @DisplayName("아이템 등록")
     fun registerInboundItem() {
-        val item = InboundItemFixture().item()
+        val item = InboundItemFixture().inboundItem()
         productRepository.save(ProductFixture().product())
 
         itemRepository.save(item)

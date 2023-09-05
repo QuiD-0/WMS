@@ -1,6 +1,7 @@
 package com.quid.wms.inbound.gateway.repository
 
 import com.quid.wms.inbound.domain.InboundItem
+import com.quid.wms.inbound.gateway.repository.jpa.InboundItemEntity
 import com.quid.wms.inbound.gateway.repository.jpa.InboundItemJpaRepository
 import com.quid.wms.inbound.gateway.repository.jpa.inboundItemEntity
 import jakarta.persistence.EntityNotFoundException

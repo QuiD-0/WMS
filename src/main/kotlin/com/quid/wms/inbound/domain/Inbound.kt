@@ -17,8 +17,6 @@ data class Inbound(
     init {
         require(title.isNotBlank()) { "title is invalid" }
         require(description.isNotBlank()) { "description is invalid" }
-        require(orderRequestAt.isBefore(estimateArrivalAt)) { "orderRequestAt is invalid" }
-        require(estimateArrivalAt.isAfter(orderRequestAt)) { "estimateArrivalAt is invalid" }
         require(inboundItems.isNotEmpty()) { "items is invalid" }
     }
 

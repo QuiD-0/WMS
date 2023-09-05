@@ -12,19 +12,12 @@ class InboundItemFixture {
         1
     )
 
-    fun item() = InboundItem(
-        id = 1,
-        product = ProductFixture().product(),
-        quantity = 1,
-        unitPrice = 1000
-    )
-
     fun repository() = InboundItemRepositoryFixture()
     fun inboundItem(id: Long? = 1): InboundItem = InboundItem(
-        id = id,
-        product = ProductFixture().product(),
-        quantity = 1,
-        unitPrice = 1000
+        id,
+        ProductFixture().product(),
+        1,
+        1000,
     )
 }
 

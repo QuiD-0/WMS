@@ -1,10 +1,14 @@
 package com.quid.wms.inbound.gateway.web
 
 import com.quid.wms.inbound.domain.Inbound
+import com.quid.wms.inbound.domain.InboundItem
+import com.quid.wms.inbound.domain.LPN
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
+import com.quid.wms.inbound.gateway.web.request.RegisterLPNRequest
 import com.quid.wms.inbound.gateway.web.request.RejectRequest
 import com.quid.wms.inbound.usecase.ConfirmInbound
 import com.quid.wms.inbound.usecase.RegisterInbound
+import com.quid.wms.inbound.usecase.RegisterLPN
 import com.quid.wms.inbound.usecase.RejectInbound
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.CREATED
@@ -34,4 +38,5 @@ class InboundApiController(
     fun reject(@PathVariable id: Long, @RequestBody request: RejectRequest) {
         rejectInbound.execute(id, request.rejectMessage)
     }
+
 }
