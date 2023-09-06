@@ -17,11 +17,6 @@ class LPNEntity(
     val expirationAt: LocalDateTime,
 ) {
     fun toLPN() = LPN(id, lpnBarcode, expirationAt)
-
-    override fun toString(): String {
-        return "LPNEntity(id=$id, lpnBarcode='$lpnBarcode', expirationAt=$expirationAt)"
-    }
-
 }
 
 fun lpnEntity(lpn: LPN) = LPNEntity(

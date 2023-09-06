@@ -4,6 +4,7 @@ import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.repository.jpa.InboundJpaRepository
 import com.quid.wms.inbound.gateway.repository.jpa.inboundEntity
 import jakarta.persistence.EntityNotFoundException
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 interface InboundRepository {

@@ -23,7 +23,7 @@ class InboundEntity(
     val estimateArrivalAt: LocalDateTime,
     @OneToMany(cascade = [PERSIST, MERGE])
     @JoinColumn(name = "inbound_id")
-    val inboundItems: Set<InboundItemEntity>,
+    val inboundItems: List<InboundItemEntity>,
     @Enumerated(STRING)
     val status: InboundStatus,
     val rejectReason: String,
@@ -37,7 +37,7 @@ fun inboundEntity(inbound: Inbound) = InboundEntity(
     inbound.description,
     inbound.orderRequestAt,
     inbound.estimateArrivalAt,
-    inbound.inboundItems.map { inboundItemEntity(it) }.toSet(),
+    inbound.inboundItems.map { inboundItemEntity(it) },
     inbound.status,
     inbound.rejectReason
 )

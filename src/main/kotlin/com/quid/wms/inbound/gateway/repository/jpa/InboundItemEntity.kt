@@ -23,7 +23,7 @@ class InboundItemEntity(
     val unitPrice: Long,
     @OneToMany(cascade = [PERSIST, MERGE])
     @JoinColumn(name = "lpn_id")
-    val lpnList: Set<LPNEntity> = setOf()
+    val lpnList: List<LPNEntity>
 ) {
     fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice, lpnList.map { it.toLPN() })
 }
@@ -33,5 +33,5 @@ fun inboundItemEntity(inboundItem: InboundItem) = InboundItemEntity(
     productEntity(inboundItem.product),
     inboundItem.quantity,
     inboundItem.unitPrice,
-    inboundItem.lpnList.map { lpnEntity(it) }.toSet()
+    inboundItem.lpnList.map { lpnEntity(it) }
 )
