@@ -13,9 +13,7 @@ class InboundFixture {
         "description",
         LocalDateTime.now(),
         LocalDateTime.now().plusDays(1),
-        listOf(
-            InboundItemFixture().registItemRequest()
-        )
+        listOf(InboundItemFixture().registItemRequest())
     )
 
     fun inbound(item : Long? = 1) = Inbound(
@@ -24,9 +22,6 @@ class InboundFixture {
         "description",
         LocalDateTime.now(),
         LocalDateTime.now().plusDays(1),
-        listOf(
-            InboundItemFixture().inboundItem(item)
-        ),
         InboundStatus.REQUESTED
     )
 
@@ -36,9 +31,6 @@ class InboundFixture {
         "description",
         LocalDateTime.now(),
         LocalDateTime.now().plusDays(1),
-        listOf(
-            InboundItemFixture().inboundItem(item)
-        ),
         InboundStatus.COMPLETED
     )
 

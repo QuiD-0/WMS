@@ -9,15 +9,16 @@ class InboundItemFixture {
     fun registItemRequest() = RegistItemRequest(
         1,
         1,
-        1
+        1,
     )
 
     fun repository() = InboundItemRepositoryFixture()
     fun inboundItem(id: Long? = 1): InboundItem = InboundItem(
         id,
-        ProductFixture().product(),
+        1L,
         1,
         1000,
+        1,
     )
 }
 

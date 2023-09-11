@@ -15,12 +15,14 @@ class LPNEntity(
     val id: Long? = null,
     val lpnBarcode: String,
     val expirationAt: LocalDateTime,
+    val inboundItemId: Long
 ) {
-    fun toLPN() = LPN(id, lpnBarcode, expirationAt)
+    fun toLPN() = LPN(id, lpnBarcode, expirationAt, inboundItemId)
 }
 
 fun lpnEntity(lpn: LPN) = LPNEntity(
     lpn.id,
     lpn.lpnBarcode,
-    lpn.expirationAt
+    lpn.expirationAt,
+    lpn.inboundItemId
 )

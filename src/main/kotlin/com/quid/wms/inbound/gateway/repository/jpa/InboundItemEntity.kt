@@ -1,11 +1,7 @@
 package com.quid.wms.inbound.gateway.repository.jpa
 
 import com.quid.wms.inbound.domain.InboundItem
-import com.quid.wms.product.gateway.repository.jpa.ProductEntity
-import com.quid.wms.product.gateway.repository.jpa.productEntity
 import jakarta.persistence.*
-import jakarta.persistence.CascadeType.MERGE
-import jakarta.persistence.CascadeType.PERSIST
 import org.hibernate.annotations.Comment
 
 @Entity
@@ -16,21 +12,18 @@ class InboundItemEntity(
     @Column(name = "inbound_item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    val product: ProductEntity,
+    val productId: Long,
     val quantity: Long,
     val unitPrice: Long,
-    @OneToMany(cascade = [PERSIST, MERGE])
-    val lpnList: List<LPNEntity>
+    val inboundId: Long,
 ) {
-    fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice, lpnList.map { it.toLPN() })
+    fun toInboundItem() = InboundItem(id, productId, quantity, unitPrice,inboundId)
 }
 
 fun inboundItemEntity(inboundItem: InboundItem) = InboundItemEntity(
     inboundItem.id,
-    productEntity(inboundItem.product),
+    inboundItem.productId,
     inboundItem.quantity,
     inboundItem.unitPrice,
-    inboundItem.lpnList.map { lpnEntity(it) }
+    inboundItem.inboundId,
 )

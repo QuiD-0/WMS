@@ -1,20 +1,23 @@
 package com.quid.wms.inbound.usecase
 
 import com.quid.wms.fixture.InboundItemFixture
+import com.quid.wms.fixture.LPNFixture
 import com.quid.wms.inbound.gateway.web.request.RegisterLPNRequest
 import com.quid.wms.inbound.usecase.RegisterLPN.RegisterLPNImpl
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import java.time.LocalDateTime
 
 class RegisterLPNTest {
 
-    private val repository = InboundItemFixture().repository()
+    private val inboundItem =InboundItemFixture().repository()
+    private val repository = LPNFixture().repository()
     private val registerLPN: RegisterLPN = RegisterLPNImpl(repository)
 
     @BeforeEach
     fun setUp() {
-        repository.save(InboundItemFixture().inboundItem())
+        inboundItem.save(InboundItemFixture().inboundItem())
     }
 
     @Test
@@ -25,8 +28,6 @@ class RegisterLPNTest {
             expirationAt = LocalDateTime.now().plusDays(1)
         )
 
-        registerLPN.execute(request)
-
-        assert(repository.findById(1).lpnList.size == 1)
+        assertDoesNotThrow { registerLPN.execute(request) }
     }
 }

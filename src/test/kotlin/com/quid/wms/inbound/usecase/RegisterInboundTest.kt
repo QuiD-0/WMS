@@ -12,7 +12,7 @@ class RegisterInboundTest {
     private val productRepository = ProductFixture().productRepository()
     private val itemRepository = InboundItemFixture().repository()
     private val inboundRepository = InboundFixture().repository()
-    private val registerInbound = RegisterInboundUseCase(productRepository,inboundRepository)
+    private val registerInbound = RegisterInboundUseCase(inboundRepository,itemRepository)
 
     @Test
     @DisplayName("입고 등록")
