@@ -1,9 +1,10 @@
 package com.quid.wms.inbound.usecase
 
 import com.quid.wms.inbound.domain.Inbound
-import com.quid.wms.inbound.gateway.repository.InboundItemRepository
 import com.quid.wms.inbound.gateway.repository.InboundRepository
+import com.quid.wms.inbound.gateway.repository.InboundItemRepository
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
+import com.quid.wms.product.gateway.repository.ProductRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,11 +15,13 @@ fun interface RegisterInbound {
     @Service
     @Transactional
     class RegisterInboundUseCase(
-        private val inboundRepository: InboundRepository,
-        private val inboundItemRepository: InboundItemRepository,
+        private val productRepository: ProductRepository,
+        private val inboundRepository: InboundRepository
     ) : RegisterInbound {
-        override fun register(request: RegistInboundRequest) = request.toInbound()
-            .let { inboundRepository.save(it) }
-            .also { e -> inboundItemRepository.saveAll(request.inboundItems.map { it.toInboundItem(e.id!!) }) }
+        override fun register(request: RegistInboundRequest) = with(request) {
+            this.item.map { productRepository.findById(it.productId)
+                .let { product -> it.toInboundItem(product) } }
+                .let { inboundRepository.save(this.toInbound(it)) }
+        }
     }
 }

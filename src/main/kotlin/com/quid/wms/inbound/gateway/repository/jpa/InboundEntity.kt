@@ -3,6 +3,8 @@ package com.quid.wms.inbound.gateway.repository.jpa
 import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.domain.InboundStatus
 import jakarta.persistence.*
+import jakarta.persistence.CascadeType.MERGE
+import jakarta.persistence.CascadeType.PERSIST
 import jakarta.persistence.EnumType.STRING
 import org.hibernate.annotations.Comment
 import java.time.LocalDateTime
@@ -19,11 +21,14 @@ class InboundEntity(
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
+    @OneToMany(cascade = [PERSIST, MERGE])
+    @JoinColumn(name = "inbound_id")
+    val inboundItems: List<InboundItemEntity>,
     @Enumerated(STRING)
     val status: InboundStatus,
     val rejectReason: String,
 ) {
-    fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, status, rejectReason)
+    fun toInbound() = Inbound(id, title, description, orderRequestAt, estimateArrivalAt, inboundItems.map { it.toInboundItem() }, status, rejectReason)
 }
 
 fun inboundEntity(inbound: Inbound) = InboundEntity(
@@ -32,6 +37,7 @@ fun inboundEntity(inbound: Inbound) = InboundEntity(
     inbound.description,
     inbound.orderRequestAt,
     inbound.estimateArrivalAt,
+    inbound.inboundItems.map { inboundItemEntity(it) },
     inbound.status,
     inbound.rejectReason
 )

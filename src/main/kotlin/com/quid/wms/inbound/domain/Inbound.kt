@@ -9,6 +9,7 @@ data class Inbound(
     val description: String,
     val orderRequestAt: LocalDateTime,
     val estimateArrivalAt: LocalDateTime,
+    val inboundItems: List<InboundItem>,
     val status: InboundStatus,
     val rejectReason :String = ""
 ) {
@@ -16,6 +17,7 @@ data class Inbound(
     init {
         require(title.isNotBlank()) { "title is invalid" }
         require(description.isNotBlank()) { "description is invalid" }
+        require(inboundItems.isNotEmpty()) { "items is invalid" }
     }
 
     fun confirm() = isRequested().copy(status = CONFIRMED)
