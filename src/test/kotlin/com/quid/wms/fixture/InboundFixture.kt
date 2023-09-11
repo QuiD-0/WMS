@@ -4,6 +4,7 @@ import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.domain.InboundStatus
 import com.quid.wms.inbound.gateway.repository.InboundRepository
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
+import com.quid.wms.inbound.gateway.web.request.RegistItemRequest
 import java.time.LocalDateTime
 
 class InboundFixture {
@@ -14,7 +15,8 @@ class InboundFixture {
         LocalDateTime.now(),
         LocalDateTime.now().plusDays(1),
         listOf(
-            InboundItemFixture().registItemRequest()
+            RegistItemRequest(1, 10, 10000),
+            RegistItemRequest(3, 15, 20000)
         )
     )
 

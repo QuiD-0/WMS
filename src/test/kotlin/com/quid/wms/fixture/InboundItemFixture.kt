@@ -8,8 +8,8 @@ class InboundItemFixture {
 
     fun registItemRequest() = RegistItemRequest(
         1,
-        1,
-        1
+        10,
+        10000
     )
 
     fun repository() = InboundItemRepositoryFixture()
