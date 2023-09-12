@@ -10,4 +10,8 @@ data class LPN(
     init {
         require(lpnBarcode.isNotBlank()) { "lpnBarcode is invalid" }
     }
+
+    fun isEqual(other: LPN): Boolean {
+        return lpnBarcode == other.lpnBarcode
+    }
 }
