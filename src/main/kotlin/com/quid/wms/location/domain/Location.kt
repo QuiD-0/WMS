@@ -17,10 +17,10 @@ data class Location(
         }
 
     private fun addLocationLPN(lpn: LPN) =
-        copy(locationLPNList = locationLPNList + LocationLPN(location = this, lpn = lpn))
+        copy(locationLPNList = locationLPNList.plus(LocationLPN(location = this, lpn = lpn)))
 
     private fun increaseQuantity(locationLpn: LocationLPN): Location =
-        copy(locationLPNList = locationLPNList - locationLpn + locationLpn.increaseQuantity())
+        copy(locationLPNList = locationLPNList.minus(locationLpn).plus(locationLpn.increaseQuantity()))
 
     private fun findLPN(lpn: LPN): LocationLPN = locationLPNList.first { it.lpn.isEqual(lpn) }
 

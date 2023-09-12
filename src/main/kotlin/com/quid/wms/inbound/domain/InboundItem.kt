@@ -10,7 +10,7 @@ data class InboundItem(
     val lpnList: List<LPN> = listOf()
 ){
     fun registerLPN(lpn: LPN): InboundItem {
-        return copy(lpnList = lpnList + lpn)
+        return copy(lpnList = lpnList.plus(lpn))
     }
 
     init {
