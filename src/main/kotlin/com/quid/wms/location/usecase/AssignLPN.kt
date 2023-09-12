@@ -13,13 +13,11 @@ fun interface AssignLPN {
     class AssignLPNUseCase(
         private val locationRepository: LocationRepository,
         private val lpnRepository: LPNRepository
-    ): AssignLPN {
+    ) : AssignLPN {
 
-        override fun assign(lpnBarcode: String, locationBarcode: String): Location {
-            val location = locationRepository.findByBarcode(locationBarcode)
-            val lpn = lpnRepository.findByBarcode(lpnBarcode)
-            return location.assignLPN(lpn)
-                .let{locationRepository.save(it)}
-        }
+        override fun assign(lpnBarcode: String, locationBarcode: String): Location =
+            Pair(locationRepository.findByBarcode(locationBarcode), lpnRepository.findByBarcode(lpnBarcode))
+            .let { it.first.assignLPN(it.second) }
+            .let { locationRepository.save(it) }
     }
 }
