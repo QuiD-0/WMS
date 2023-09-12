@@ -19,11 +19,13 @@ class LocationEntity(
     @Enumerated(STRING)
     val storageType: StorageType,
     @Enumerated(STRING)
-    val usagePurpose: UsagePurpose
+    val usagePurpose: UsagePurpose,
+    @OneToMany(mappedBy = "location", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val locationLPNList: List<LocationLPNEntity>,
 ) {
-    fun toLocation() = Location(id, locationBarcode, storageType, usagePurpose)
+    fun toLocation() = Location(id, locationBarcode, storageType, usagePurpose, locationLPNList.map { it.toLocationLPN() })
 }
 
 fun locationEntity(location: Location) = LocationEntity(
-    location.id, location.locationBarcode, location.storageType, location.usagePurpose
+    location.id, location.locationBarcode, location.storageType, location.usagePurpose, location.locationLPNList.map { locationLPNEntity(it) }
 )

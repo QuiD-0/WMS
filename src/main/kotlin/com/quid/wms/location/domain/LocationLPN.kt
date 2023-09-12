@@ -4,7 +4,6 @@ import com.quid.wms.inbound.domain.LPN
 
 data class LocationLPN(
     val id: Long? = null,
-    val location: Location,
     val lpn: LPN,
     val quantity: Long = 1,
 ) {
