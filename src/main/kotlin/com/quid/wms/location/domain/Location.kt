@@ -17,7 +17,7 @@ data class Location(
         }
 
     private fun addLocationLPN(lpn: LPN) =
-        copy(locationLPNList = locationLPNList.plus(LocationLPN(location = this, lpn = lpn)))
+        copy(locationLPNList = locationLPNList.plus(LocationLPN(lpn = lpn)))
 
     private fun increaseQuantity(locationLpn: LocationLPN): Location =
         copy(locationLPNList = locationLPNList.minus(locationLpn).plus(locationLpn.increaseQuantity()))
