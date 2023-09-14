@@ -14,8 +14,8 @@ import org.springframework.http.HttpStatus
 class AssignLPNApiTest {
 
     @Test
-    @DisplayName("location 등록 api")
-    fun registerLocation() {
+    @DisplayName("location LPN 등록 api")
+    fun assignLPNLocation() {
         val request = LocationFixture().assignLPNRequest()
 
         RestAssured.given().log().all()
@@ -26,6 +26,21 @@ class AssignLPNApiTest {
             .then()
             .log().all()
             .statusCode(HttpStatus.CREATED.value())
+    }
+
+    @Test
+    @DisplayName("location LPN 등록 api 실패")
+    fun assignLPNLocationFailWhenBarcodeNotExist() {
+        val request = LocationFixture().assignLPNFailRequest()
+
+        RestAssured.given().log().all()
+            .contentType(ContentType.JSON)
+            .body(request)
+            .`when`()
+            .post("/api/locations/register-lpn")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
     }
 
 }

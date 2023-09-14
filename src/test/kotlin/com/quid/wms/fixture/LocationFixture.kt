@@ -18,6 +18,11 @@ class LocationFixture {
         lpnBarcode = "LPN-1"
     )
 
+    fun assignLPNFailRequest() = AssignLocationLpnRequest(
+        locationBarcode = "FAIL-LOC-001",
+        lpnBarcode = "FAIL-LPN-1"
+    )
+
     companion object {
         fun location(): Location =  Location(
             1L,
