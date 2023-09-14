@@ -11,22 +11,21 @@ import org.springframework.http.HttpStatus
 
 @ApiTest
 @Disabled
-class RegisterLocationApiTest {
+class AssignLPNApiTest {
 
     @Test
     @DisplayName("location 등록 api")
     fun registerLocation() {
-        val request = LocationFixture().registRequest()
+        val request = LocationFixture().assignLPNRequest()
 
         RestAssured.given().log().all()
             .contentType(ContentType.JSON)
             .body(request)
             .`when`()
-            .post("/api/locations")
+            .post("/api/locations/register-lpn")
             .then()
             .log().all()
             .statusCode(HttpStatus.CREATED.value())
     }
 
 }
-
