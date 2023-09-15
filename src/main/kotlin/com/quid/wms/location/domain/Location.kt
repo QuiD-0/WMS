@@ -9,15 +9,15 @@ data class Location(
     val usagePurpose: UsagePurpose,
     val locationLPNList: List<LocationLPN> = listOf(),
 ) {
-    fun assignLPN(lpn: LPN): Location =
-        if (isExistLPN(lpn)) {
-            increaseQuantity(findLPN(lpn))
-        } else {
-            addLocationLPN(lpn)
-        }
-    fun updateAmount(lpn: LPN, amount: Int): Location {
-        val locationLpn = findLPN(lpn)
-        val updated = locationLpn.copy(quantity = amount.toLong())
+    fun assignLPN(lpn: LPN): Location {
+        findLPN(lpn)
+            ?.let { return increaseQuantity(it) }
+            ?: return addLocationLPN(lpn)
+    }
+
+    fun updateAmount(lpn: LPN, amount: Long): Location {
+        val locationLpn = findLPN(lpn)?: throw IllegalArgumentException("lpn not found")
+        val updated = locationLpn.copy(quantity = amount)
         return copy(locationLPNList = locationLPNList.minus(locationLpn).plus(updated))
     }
 
@@ -27,7 +27,5 @@ data class Location(
     private fun increaseQuantity(locationLpn: LocationLPN): Location =
         copy(locationLPNList = locationLPNList.minus(locationLpn).plus(locationLpn.increaseQuantity()))
 
-    private fun findLPN(lpn: LPN): LocationLPN = locationLPNList.first { it.lpn.isEqual(lpn) }
-
-    private fun isExistLPN(lpn: LPN): Boolean = locationLPNList.any { it.lpn.isEqual(lpn) }
+    private fun findLPN(lpn: LPN): LocationLPN? = locationLPNList.find { it.lpn.isEqual(lpn) }
 }

@@ -6,7 +6,8 @@ import org.hibernate.annotations.Comment
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "lpn")
+@Table(name = "lpn",
+    indexes = [Index(name = "lpn_barcode_idx", columnList = "lpn_barcode", unique = true)])
 @Comment("LPN")
 class LPNEntity(
     @Id

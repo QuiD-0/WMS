@@ -7,6 +7,10 @@ data class LocationLPN(
     val lpn: LPN,
     val quantity: Long = 1,
 ) {
+    init {
+        require(quantity >= 0) { "quantity is invalid" }
+    }
+
     fun increaseQuantity(): LocationLPN {
         return copy(quantity = quantity + 1)
     }

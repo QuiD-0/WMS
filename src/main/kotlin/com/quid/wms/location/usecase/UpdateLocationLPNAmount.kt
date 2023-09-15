@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 fun interface UpdateLocationLPNAmount {
-    fun modify(locationBarcode: String, lpnBarcode: String, amount: Int): Location
+    fun modify(locationBarcode: String, lpnBarcode: String, amount: Long): Location
 
     @Service
     @Transactional
@@ -15,7 +15,7 @@ fun interface UpdateLocationLPNAmount {
         private val locationRepository: LocationRepository,
         private val lpnRepository: LPNRepository
     ) : UpdateLocationLPNAmount {
-        override fun modify(locationBarcode: String, lpnBarcode: String, amount: Int): Location {
+        override fun modify(locationBarcode: String, lpnBarcode: String, amount: Long): Location {
             val location = locationRepository.findByBarcode(locationBarcode)
             val lpn = lpnRepository.findByBarcode(lpnBarcode)
 
