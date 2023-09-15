@@ -15,6 +15,11 @@ data class Location(
         } else {
             addLocationLPN(lpn)
         }
+    fun updateAmount(lpn: LPN, amount: Int): Location {
+        val locationLpn = findLPN(lpn)
+        val updated = locationLpn.copy(quantity = amount.toLong())
+        return copy(locationLPNList = locationLPNList.minus(locationLpn).plus(updated))
+    }
 
     private fun addLocationLPN(lpn: LPN) =
         copy(locationLPNList = locationLPNList.plus(LocationLPN(lpn = lpn)))
