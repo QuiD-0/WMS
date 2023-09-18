@@ -1,4 +1,13 @@
 package com.quid.wms.outbound.domain
 
-class Outbound {
+import com.quid.wms.location.domain.Location
+
+class Outbound(
+    val id: Long? = null,
+    val order: Order,
+    val deliveryRequirements: String,
+    val isPriorityDelivery: Boolean,
+    val desiredDeliveryAt: String,
+    val pickingTote: Location
+) {
 }

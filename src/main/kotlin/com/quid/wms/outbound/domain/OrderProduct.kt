@@ -2,9 +2,10 @@ package com.quid.wms.outbound.domain
 
 import com.quid.wms.product.domain.Product
 
-class OrderProduct(
+data class OrderProduct(
+    val id: Long? = null,
     val product: Product,
     val quantity: Int,
-    val unitProduct: Long,
+    val unitPrice: Long,
 ) {
 }
