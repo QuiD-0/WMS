@@ -4,6 +4,7 @@ import java.time.LocalDateTime
 
 data class LPN(
     val id: Long? = null,
+    val productId: Long,
     val lpnBarcode: String,
     val expirationAt: LocalDateTime,
 ) {

@@ -8,5 +8,5 @@ data class RegisterLPNRequest(
     val lpnBarcode: String,
     val expirationAt: LocalDateTime,
 ){
-    fun toLPN() = LPN(null, lpnBarcode, expirationAt)
+    fun toLPN(productId: Long) = LPN(null, productId, lpnBarcode, expirationAt)
 }

@@ -15,10 +15,10 @@ fun interface RegisterLPN {
     class RegisterLPNImpl(
         private val inboundItemRepository: InboundItemRepository,
     ) : RegisterLPN {
-        override fun execute(registerLPNRequest: RegisterLPNRequest): InboundItem = with(registerLPNRequest) {
-            inboundItemRepository.findById(inboundItemId)
-                .registerLPN(this.toLPN())
-                .let { inboundItemRepository.save(it) }
+        override fun execute(registerLPNRequest: RegisterLPNRequest): InboundItem {
+            val inboundItem = inboundItemRepository.findById(registerLPNRequest.inboundItemId)
+            val lpn = inboundItem.registerLPN(registerLPNRequest.toLPN(inboundItem.product.id!!))
+            return inboundItemRepository.save(lpn)
         }
     }
 }

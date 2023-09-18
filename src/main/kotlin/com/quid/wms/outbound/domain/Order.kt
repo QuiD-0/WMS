@@ -11,7 +11,4 @@ data class Order(
         }
     }
 
-    fun getTotalPrice(): Long {
-        return orderProducts.sumOf { it.unitPrice * it.quantity }
-    }
 }
