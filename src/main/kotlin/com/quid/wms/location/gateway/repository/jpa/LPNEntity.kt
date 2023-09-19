@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "lpn",
-    indexes = [Index(name = "lpn_barcode_idx", columnList = "lpn_barcode", unique = true)])
+    indexes = [Index(name = "lpn_barcode_idx", columnList = "lpnBarcode", unique = true)])
 @Comment("LPN")
 class LPNEntity(
     @Id

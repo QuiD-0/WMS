@@ -13,7 +13,7 @@ import org.hibernate.annotations.Comment
 @Entity
 @Comment("위치")
 @Table(name = "location",
-    indexes = [Index(name = "location_barcode_idx", columnList = "location_barcode", unique = true)])
+    indexes = [Index(name = "location_barcode_idx", columnList = "locationBarcode", unique = true)])
 class LocationEntity(
     @Id
     @Column(name = "location_id")
