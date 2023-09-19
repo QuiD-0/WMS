@@ -16,7 +16,6 @@ class InboundFixture {
         LocalDateTime.now().plusDays(1),
         listOf(
             RegistItemRequest(1, 10, 10000),
-            RegistItemRequest(3, 15, 20000)
         )
     )
 

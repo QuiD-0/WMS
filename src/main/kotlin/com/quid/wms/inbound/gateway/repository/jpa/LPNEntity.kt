@@ -15,15 +15,17 @@ class LPNEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val productId: Long,
+    val inboundItemId: Long,
     val lpnBarcode: String,
     val expirationAt: LocalDateTime,
 ) {
-    fun toLPN() = LPN(id, productId, lpnBarcode, expirationAt)
+    fun toLPN() = LPN(id, productId,inboundItemId, lpnBarcode, expirationAt)
 }
 
 fun lpnEntity(lpn: LPN) = LPNEntity(
     lpn.id,
     lpn.productId,
+    lpn.inboundItemId,
     lpn.lpnBarcode,
     lpn.expirationAt
 )

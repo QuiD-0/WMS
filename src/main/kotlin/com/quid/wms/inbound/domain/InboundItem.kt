@@ -7,11 +7,7 @@ data class InboundItem(
     val product: Product,
     val quantity: Long,
     val unitPrice: Long,
-    val lpnList: List<LPN> = listOf()
 ){
-    fun registerLPN(lpn: LPN): InboundItem {
-        return copy(lpnList = lpnList.plus(lpn))
-    }
 
     init {
         require(quantity > 0) { "quantity is invalid" }

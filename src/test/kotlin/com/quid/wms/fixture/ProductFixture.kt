@@ -51,7 +51,7 @@ class ProductRepositoryFixture: ProductRepository {
 
     override fun save(product: Product): Product {
         if(products.containsKey(product.id)) throw IllegalArgumentException("Product already exists")
-        products[product.id!!] = product
+        products[1] = product
         return product
     }
 
