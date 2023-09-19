@@ -1,4 +1,4 @@
-package com.quid.wms.inbound
+package com.quid.wms.location
 
 import com.quid.wms.annotation.ApiTest
 import com.quid.wms.fixture.LPNFixture
@@ -20,7 +20,7 @@ class RegisterLPNApiTest {
             .contentType(ContentType.JSON)
             .body(request)
             .`when`()
-            .post("/api/inbounds/inbound-items/lpns")
+            .post("/api/locations/lpns")
             .then()
             .log().all()
             .statusCode(HttpStatus.CREATED.value())

@@ -1,9 +1,9 @@
-package com.quid.wms.inbound.usecase
+package com.quid.wms.location.usecase
 
 import com.quid.wms.fixture.InboundItemFixture
 import com.quid.wms.fixture.LPNFixture
-import com.quid.wms.inbound.gateway.web.request.RegisterLPNRequest
-import com.quid.wms.inbound.usecase.RegisterLPN.RegisterLPNImpl
+import com.quid.wms.location.gateway.web.request.RegisterLPNRequest
+import com.quid.wms.location.usecase.RegisterLPN.RegisterLPNImpl
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow

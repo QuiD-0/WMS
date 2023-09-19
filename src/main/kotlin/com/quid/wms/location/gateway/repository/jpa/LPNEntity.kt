@@ -1,6 +1,6 @@
-package com.quid.wms.inbound.gateway.repository.jpa
+package com.quid.wms.location.gateway.repository.jpa
 
-import com.quid.wms.inbound.domain.LPN
+import com.quid.wms.location.domain.LPN
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import java.time.LocalDateTime

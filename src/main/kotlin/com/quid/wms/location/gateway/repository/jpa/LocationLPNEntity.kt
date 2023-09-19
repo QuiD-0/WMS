@@ -1,7 +1,5 @@
 package com.quid.wms.location.gateway.repository.jpa
 
-import com.quid.wms.inbound.gateway.repository.jpa.LPNEntity
-import com.quid.wms.inbound.gateway.repository.jpa.lpnEntity
 import com.quid.wms.location.domain.LocationLPN
 import jakarta.persistence.*
 import jakarta.persistence.GenerationType.IDENTITY

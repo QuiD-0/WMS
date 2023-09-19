@@ -1,8 +1,8 @@
-package com.quid.wms.inbound.gateway.repository
+package com.quid.wms.location.gateway.repository
 
-import com.quid.wms.inbound.domain.LPN
-import com.quid.wms.inbound.gateway.repository.jpa.LPNJpaRepository
-import com.quid.wms.inbound.gateway.repository.jpa.lpnEntity
+import com.quid.wms.location.domain.LPN
+import com.quid.wms.location.gateway.repository.jpa.LPNJpaRepository
+import com.quid.wms.location.gateway.repository.jpa.lpnEntity
 import org.springframework.stereotype.Repository
 
 interface LPNRepository {

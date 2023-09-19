@@ -1,9 +1,9 @@
-package com.quid.wms.inbound.usecase
+package com.quid.wms.location.usecase
 
-import com.quid.wms.inbound.domain.LPN
 import com.quid.wms.inbound.gateway.repository.InboundItemRepository
-import com.quid.wms.inbound.gateway.repository.LPNRepository
-import com.quid.wms.inbound.gateway.web.request.RegisterLPNRequest
+import com.quid.wms.location.domain.LPN
+import com.quid.wms.location.gateway.repository.LPNRepository
+import com.quid.wms.location.gateway.web.request.RegisterLPNRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

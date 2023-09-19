@@ -1,7 +1,5 @@
 package com.quid.wms.location.domain
 
-import com.quid.wms.inbound.domain.LPN
-
 data class LocationLPN(
     val id: Long? = null,
     val lpn: LPN,

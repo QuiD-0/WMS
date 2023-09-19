@@ -1,7 +1,7 @@
 package com.quid.wms.location.usecase
 
-import com.quid.wms.inbound.gateway.repository.LPNRepository
 import com.quid.wms.location.domain.Location
+import com.quid.wms.location.gateway.repository.LPNRepository
 import com.quid.wms.location.gateway.repository.LocationRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

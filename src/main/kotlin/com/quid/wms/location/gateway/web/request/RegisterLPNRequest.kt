@@ -1,6 +1,6 @@
-package com.quid.wms.inbound.gateway.web.request
+package com.quid.wms.location.gateway.web.request
 
-import com.quid.wms.inbound.domain.LPN
+import com.quid.wms.location.domain.LPN
 import java.time.LocalDateTime
 
 data class RegisterLPNRequest(

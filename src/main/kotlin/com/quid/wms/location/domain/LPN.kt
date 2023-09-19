@@ -1,4 +1,4 @@
-package com.quid.wms.inbound.domain
+package com.quid.wms.location.domain
 
 import java.time.LocalDateTime
 

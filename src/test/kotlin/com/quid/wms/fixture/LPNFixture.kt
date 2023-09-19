@@ -1,8 +1,8 @@
 package com.quid.wms.fixture
 
-import com.quid.wms.inbound.domain.LPN
-import com.quid.wms.inbound.gateway.repository.LPNRepository
-import com.quid.wms.inbound.gateway.web.request.RegisterLPNRequest
+import com.quid.wms.location.domain.LPN
+import com.quid.wms.location.gateway.repository.LPNRepository
+import com.quid.wms.location.gateway.web.request.RegisterLPNRequest
 import java.time.LocalDateTime
 
 class LPNFixture {
