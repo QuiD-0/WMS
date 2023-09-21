@@ -25,7 +25,8 @@ class RegisterLPNTest {
         val request = RegisterLPNRequest(
             inboundItemId = 1,
             lpnBarcode = "LPN-1",
-            expirationAt = LocalDateTime.now().plusDays(1)
+            expirationAt = LocalDateTime.now().plusDays(1),
+            quantity = 1
         )
 
         assertDoesNotThrow { registerLPN.execute(request) }

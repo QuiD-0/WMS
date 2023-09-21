@@ -13,7 +13,7 @@ class LocationTest{
 
         val assigned = location.assignLPN(lpn)
 
-        assert(assigned.locationLPNList.size == 1)
+        assert(assigned.lpnList.size == 1)
     }
 
     @Test
@@ -24,7 +24,7 @@ class LocationTest{
         val assigned1 = location.assignLPN(lpn)
         val assigned2 = assigned1.assignLPN(lpn)
 
-        assert(assigned2.locationLPNList.first().quantity == 2L )
+        assert(assigned2.lpnList.first().quantity == 2L )
     }
 
 

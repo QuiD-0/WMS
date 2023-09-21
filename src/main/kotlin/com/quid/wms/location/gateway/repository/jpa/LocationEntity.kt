@@ -26,11 +26,11 @@ class LocationEntity(
     val usagePurpose: UsagePurpose,
     @OneToMany(cascade = [PERSIST, MERGE])
     @JoinColumn(name = "location_id")
-    val locationLPNList: List<LocationLPNEntity>,
+    val lpnList: List<LPNEntity>,
 ) {
-    fun toLocation() = Location(id, locationBarcode, storageType, usagePurpose, locationLPNList.map { it.toLocationLPN() })
+    fun toLocation() = Location(id, locationBarcode, storageType, usagePurpose, lpnList.map { it.toLPN() })
 }
 
 fun locationEntity(location: Location) = LocationEntity(
-    location.id, location.locationBarcode, location.storageType, location.usagePurpose, location.locationLPNList.map { locationLPNEntity(it) }
+    location.id, location.locationBarcode, location.storageType, location.usagePurpose, location.lpnList.map { lpnEntity(it) }
 )

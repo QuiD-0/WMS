@@ -9,7 +9,8 @@ class LPNFixture {
     fun registerRequest() = RegisterLPNRequest(
         inboundItemId = 1,
         lpnBarcode = "LPN-1",
-        expirationAt = LocalDateTime.now().plusDays(1)
+        expirationAt = LocalDateTime.now().plusDays(1),
+        quantity = 1
     )
 
     fun repository(): LPNRepository = object : LPNRepository {
@@ -25,6 +26,7 @@ class LPNFixture {
         lpnBarcode = "LPN-1",
         productId = 1,
         inboundItemId = 1,
-        expirationAt = LocalDateTime.now().plusDays(1)
+        expirationAt = LocalDateTime.now().plusDays(1),
+        quantity = 1
     )
 }

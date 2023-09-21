@@ -7,6 +7,7 @@ data class RegisterLPNRequest(
     val inboundItemId: Long,
     val lpnBarcode: String,
     val expirationAt: LocalDateTime,
+    val quantity: Long,
 ){
-    fun toLPN(productId: Long) = LPN(null, productId, inboundItemId, lpnBarcode, expirationAt)
+    fun toLPN(productId: Long) = LPN(null, productId, inboundItemId, lpnBarcode, expirationAt, quantity)
 }
