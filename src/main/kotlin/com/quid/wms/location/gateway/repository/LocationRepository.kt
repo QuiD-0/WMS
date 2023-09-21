@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository
 interface LocationRepository {
     fun save(location: Location): Location
     fun findByBarcode(locationBarcode: String): Location
+    fun findAll(): List<Location>
 
     @Repository
     class LocationRepositoryImpl(
@@ -15,5 +16,6 @@ interface LocationRepository {
     ): LocationRepository {
         override fun save(location: Location): Location = jpaRepository.save(locationEntity(location)).toLocation()
         override fun findByBarcode(locationBarcode: String): Location = jpaRepository.findByLocationBarcode(locationBarcode)?.toLocation() ?: throw Exception("Location not found")
+        override fun findAll(): List<Location> = jpaRepository.findAll().map { it.toLocation() }
     }
 }

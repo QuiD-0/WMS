@@ -5,11 +5,7 @@ import com.quid.wms.location.gateway.web.request.AssignLocationLpnRequest
 import com.quid.wms.location.gateway.web.request.RegisterLPNRequest
 import com.quid.wms.location.gateway.web.request.RegisterLocationRequest
 import com.quid.wms.location.gateway.web.request.UpdateLocationLPNAmountRequest
-import com.quid.wms.location.usecase.AssignLPN
-import com.quid.wms.location.usecase.RegisterLPN
-import com.quid.wms.location.usecase.RegisterLocation
-import com.quid.wms.location.usecase.UpdateLocationLPNAmount
-import org.springframework.http.HttpStatus
+import com.quid.wms.location.usecase.*
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.OK
 import org.springframework.web.bind.annotation.*
@@ -20,7 +16,8 @@ class LocationApiController(
     private val registLocation: RegisterLocation,
     private val assignLPN: AssignLPN,
     private val registerLPN: RegisterLPN,
-    private val updateLocationLPNAmount: UpdateLocationLPNAmount
+    private val updateLocationLPNAmount: UpdateLocationLPNAmount,
+    private val findLocation: FindLocation
 ) {
 
     @PostMapping
@@ -40,8 +37,15 @@ class LocationApiController(
         updateLocationLPNAmount.modify(request.locationBarcode, request.lpnBarcode, request.amount)
 
     @PostMapping("/lpns")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     fun registerLPN(@RequestBody request: RegisterLPNRequest) =
         registerLPN.execute(request)
 
+    @GetMapping("/{barcode}")
+    @ResponseStatus(OK)
+    fun findByBarcode(@PathVariable barcode: String): Location = findLocation.byBarcode(barcode)
+
+    @GetMapping
+    @ResponseStatus(OK)
+    fun findAll(): List<Location> = findLocation.findAll()
 }
