@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 
 interface ProductRepository {
     fun findAll(): List<Product>
-    fun save(product: Product): Product
+    fun save(product: Product): Long
     fun deleteAll()
     fun findById(productId: Long): Product
 
@@ -20,7 +20,7 @@ interface ProductRepository {
 
         override fun findAll(): List<Product> = jpaRepository.findAll().map { it.toProduct() }
 
-        override fun save(product: Product): Product = jpaRepository.save(productEntity(product)).toProduct()
+        override fun save(product: Product): Long = jpaRepository.save(productEntity(product)).id!!
 
         override fun deleteAll() = jpaRepository.deleteAll()
 

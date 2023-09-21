@@ -1,8 +1,6 @@
 package com.quid.wms.inbound.usecase
 
-import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.repository.InboundRepository
-import com.quid.wms.inbound.gateway.repository.InboundItemRepository
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
 import com.quid.wms.product.gateway.repository.ProductRepository
 import org.springframework.stereotype.Service
@@ -10,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional
 
 fun interface RegisterInbound {
 
-    fun register(request: RegistInboundRequest): Inbound
+    fun register(request: RegistInboundRequest): Long
 
     @Service
     @Transactional

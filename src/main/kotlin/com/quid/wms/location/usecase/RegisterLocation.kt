@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service
 
 interface RegisterLocation {
 
-    fun execute(location: Location): Location
+    fun execute(location: Location): Long
 
     @Service
     class RegisterLocationUseCase(
         private val repository: LocationRepository
     ): RegisterLocation{
-        override fun execute(location: Location): Location = repository.save(location)
+        override fun execute(location: Location): Long = repository.save(location)
     }
 }

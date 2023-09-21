@@ -1,6 +1,5 @@
 package com.quid.wms.inbound.gateway.web
 
-import com.quid.wms.inbound.domain.Inbound
 import com.quid.wms.inbound.gateway.web.request.RegistInboundRequest
 import com.quid.wms.inbound.gateway.web.request.RejectRequest
 import com.quid.wms.inbound.usecase.ConfirmInbound
@@ -22,7 +21,7 @@ class InboundApiController(
 
     @PostMapping
     @ResponseStatus(CREATED)
-    fun request(@RequestBody request: RegistInboundRequest): Inbound =
+    fun request(@RequestBody request: RegistInboundRequest): Long =
         registerInbound.register(request)
 
     @PatchMapping("/{id}/confirm")

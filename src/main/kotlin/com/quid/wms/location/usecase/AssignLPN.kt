@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 
 fun interface AssignLPN {
 
-    fun assign(lpnBarcode: String, locationBarcode: String): Location
+    fun assign(lpnBarcode: String, locationBarcode: String)
 
     @Service
     @Transactional
@@ -18,12 +18,12 @@ fun interface AssignLPN {
         private val lpnRepository: LPNRepository
     ) : AssignLPN {
 
-        override fun assign(lpnBarcode: String, locationBarcode: String): Location {
+        override fun assign(lpnBarcode: String, locationBarcode: String) {
             val location = locationRepository.findByBarcode(locationBarcode)
             val lpn = lpnRepository.findByBarcode(lpnBarcode)
 
-            return assign(location, lpn)
-                .let { locationRepository.save(it) }
+            assign(location, lpn)
+                .also { locationRepository.save(it) }
         }
 
         private fun assign(location: Location, lpn: LPN): Location =

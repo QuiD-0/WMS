@@ -49,10 +49,10 @@ class ProductRepositoryFixture: ProductRepository {
         return products.values.toList()
     }
 
-    override fun save(product: Product): Product {
+    override fun save(product: Product): Long {
         if(products.containsKey(product.id)) throw IllegalArgumentException("Product already exists")
         products[1] = product
-        return product
+        return 1
     }
 
     override fun deleteAll() {

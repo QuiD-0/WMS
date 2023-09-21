@@ -6,8 +6,7 @@ import com.quid.wms.location.gateway.web.request.RegisterLPNRequest
 import com.quid.wms.location.gateway.web.request.RegisterLocationRequest
 import com.quid.wms.location.gateway.web.request.UpdateLocationLPNAmountRequest
 import com.quid.wms.location.usecase.*
-import org.springframework.http.HttpStatus.CREATED
-import org.springframework.http.HttpStatus.OK
+import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -22,19 +21,21 @@ class LocationApiController(
 
     @PostMapping
     @ResponseStatus(CREATED)
-    fun registerLocation(@RequestBody request: RegisterLocationRequest): Location =
+    fun registerLocation(@RequestBody request: RegisterLocationRequest): Long =
         request.toLocation()
             .let { registLocation.execute(it) }
 
     @PostMapping("/register-lpn")
-    @ResponseStatus(CREATED)
-    fun assignLPN(@RequestBody request: AssignLocationLpnRequest): Location =
+    @ResponseStatus(NO_CONTENT)
+    fun assignLPN(@RequestBody request: AssignLocationLpnRequest) {
         assignLPN.assign(request.lpnBarcode, request.locationBarcode)
+    }
 
-    @PostMapping("/update-amount")
-    @ResponseStatus(OK)
-    fun updateAmount(@RequestBody request: UpdateLocationLPNAmountRequest): Location =
+    @PutMapping("/update-amount")
+    @ResponseStatus(NO_CONTENT)
+    fun updateAmount(@RequestBody request: UpdateLocationLPNAmountRequest) {
         updateLocationLPNAmount.modify(request.locationBarcode, request.lpnBarcode, request.amount)
+    }
 
     @PostMapping("/lpns")
     @ResponseStatus(CREATED)

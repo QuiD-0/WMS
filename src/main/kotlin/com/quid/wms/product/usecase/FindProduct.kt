@@ -5,15 +5,14 @@ import com.quid.wms.product.gateway.repository.ProductRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-interface RegistProduct {
-    fun register(product: Product): Long
+interface FindProduct {
+    fun all(): List<Product>
 
     @Service
-    @Transactional
-    class RegistProductUseCase(
+    @Transactional(readOnly = true)
+    class FindProductUseCase(
         private val productRepository: ProductRepository
-    ) : RegistProduct {
-        override fun register(product: Product): Long =
-            productRepository.save(product)
+    ) : FindProduct {
+        override fun all(): List<Product> = productRepository.findAll()
     }
 }
