@@ -1,6 +1,6 @@
-package com.quid.wms.outbound.gateway.repository
+package com.quid.wms.order.gateway.repository
 
-import com.quid.wms.outbound.domain.Order
+import com.quid.wms.order.domain.Order
 import org.springframework.stereotype.Repository
 
 interface OrderRepository {
