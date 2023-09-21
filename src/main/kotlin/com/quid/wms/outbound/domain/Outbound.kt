@@ -1,11 +1,12 @@
 package com.quid.wms.outbound.domain
 
+import java.time.LocalDate
+
 data class Outbound(
     val id: Long? = null,
     val orderId: Long,
-    val deliveryRequirements: String,
     val isPriorityDelivery: Boolean,
-    val desiredDeliveryAt: String,
+    val desiredDeliveryDateTime: LocalDate,
     val pickingLocationId: Long,
     val outboundStatus: OutboundStatus,
 ) {

@@ -1,6 +1,7 @@
 package com.quid.wms.outbound.usecase
 
 import com.quid.wms.order.gateway.repository.OrderRepository
+import com.quid.wms.outbound.gateway.repository.OutboundRepository
 import com.quid.wms.outbound.gateway.web.request.RegisterOutboundRequest
 import org.springframework.stereotype.Service
 
@@ -11,12 +12,15 @@ fun interface RegisterOutbound {
     @Service
     class RegisterOutboundUseCase(
         private val orderRepository: OrderRepository,
+        private val outboundRepository: OutboundRepository
     ) : RegisterOutbound {
         override fun registerOutbound(request: RegisterOutboundRequest): Long {
-            val order = orderRepository.findById(request.orderId)
-            order.checkQuantity()
+            if(orderRepository.existsById(request.orderId).not()){
+                throw IllegalArgumentException("order not found")
+            }
 
-            return Any() as Long
+            return request.toOutbound(1L)
+                .let { outboundRepository.save(it) }
         }
     }
 

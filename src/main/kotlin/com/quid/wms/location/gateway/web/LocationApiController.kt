@@ -25,13 +25,13 @@ class LocationApiController(
         request.toLocation()
             .let { registLocation.execute(it) }
 
-    @PostMapping("/register-lpn")
+    @PatchMapping("/register-lpn")
     @ResponseStatus(NO_CONTENT)
     fun assignLPN(@RequestBody request: AssignLocationLpnRequest) {
         assignLPN.assign(request.lpnBarcode, request.locationBarcode)
     }
 
-    @PutMapping("/update-amount")
+    @PatchMapping("/update-amount")
     @ResponseStatus(NO_CONTENT)
     fun updateAmount(@RequestBody request: UpdateLocationLPNAmountRequest) {
         updateLocationLPNAmount.modify(request.locationBarcode, request.lpnBarcode, request.amount)
