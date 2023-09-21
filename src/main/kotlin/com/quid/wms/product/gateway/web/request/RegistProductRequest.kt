@@ -8,6 +8,7 @@ import com.quid.wms.product.domain.TemperatureZone
 data class RegistProductRequest(
     val name: String,
     val code: String,
+    val price: Int,
     val description: String,
     val brand: String,
     val maker: String,
@@ -20,7 +21,7 @@ data class RegistProductRequest(
     val lengthInMillimeters: Long,
 ) {
     fun toDomain() = Product(
-        null, name, code, description, brand, maker, origin, category, temperatureZone, weight, ProductSize(
+        null, name, code, price, description, brand, maker, origin, category, temperatureZone, weight, ProductSize(
             widthInMillimeters, heightInMillimeters, lengthInMillimeters
         )
     )

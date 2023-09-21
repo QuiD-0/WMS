@@ -14,6 +14,7 @@ class ProductFixture {
         1L,
         "name",
         code,
+        10000,
         "description",
         "brand",
         "maker",
@@ -27,6 +28,7 @@ class ProductFixture {
     fun registProductRequest(code: String = LocalDateTime.now().toString()) = RegistProductRequest(
         "name",
         code,
+        10000,
         "description",
         "brand",
         "maker",

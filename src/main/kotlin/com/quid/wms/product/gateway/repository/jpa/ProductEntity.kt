@@ -19,6 +19,7 @@ class ProductEntity(
     val name: String,
     @Column(unique = true)
     val code: String,
+    val price: Int,
     val description: String,
     val brand: String,
     val maker: String,
@@ -36,6 +37,7 @@ class ProductEntity(
         id,
         name,
         code,
+        price,
         description,
         brand,
         maker,
@@ -55,6 +57,7 @@ fun productEntity(product: Product) = ProductEntity(
     product.id,
     product.name,
     product.code,
+    product.price,
     product.description,
     product.brand,
     product.maker,

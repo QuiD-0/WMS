@@ -4,6 +4,7 @@ data class Product(
     val id: Long? = null,
     val name: String,
     val code: String,
+    val price: Int,
     val description: String,
     val brand: String,
     val maker: String,
