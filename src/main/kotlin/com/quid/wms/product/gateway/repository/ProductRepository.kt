@@ -1,5 +1,8 @@
 package com.quid.wms.product.gateway.repository
 
+import com.quid.wms.order.domain.OrderProduct
+import com.quid.wms.order.domain.orderProduct
+import com.quid.wms.order.gateway.web.reqeust.ProductQuantity
 import com.quid.wms.product.domain.Product
 import com.quid.wms.product.gateway.repository.jpa.ProductJpaRepository
 import com.quid.wms.product.gateway.repository.jpa.productEntity
@@ -12,6 +15,7 @@ interface ProductRepository {
     fun save(product: Product): Long
     fun deleteAll()
     fun findById(productId: Long): Product
+    fun findOrderProducts(productList: List<ProductQuantity>): List<OrderProduct>
 
     @Repository
     class ProductRepositoryImpl(
@@ -27,6 +31,14 @@ interface ProductRepository {
         override fun findById(productId: Long): Product = jpaRepository.findByIdOrNull(productId)
             ?.toProduct()
             ?: throw EntityNotFoundException("존재하지 않는 상품입니다.")
+
+        override fun findOrderProducts(productList: List<ProductQuantity>): List<OrderProduct> {
+            return productList.map {
+                val product = findById(it.productId)
+                orderProduct(product, it.quantity)
+            }
+        }
+
     }
 }
 
