@@ -1,5 +1,8 @@
 package com.quid.wms.fixture
 
+import com.quid.wms.order.domain.OrderProduct
+import com.quid.wms.order.domain.orderProduct
+import com.quid.wms.order.gateway.web.reqeust.ProductQuantity
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.Product
 import com.quid.wms.product.domain.ProductSize
@@ -63,5 +66,12 @@ class ProductRepositoryFixture: ProductRepository {
 
     override fun findById(productId: Long): Product {
         return products[productId]!!
+    }
+
+    override fun findOrderProducts(productList: List<ProductQuantity>): List<OrderProduct> {
+        return productList.map {
+            val product = findById(it.productId)
+            orderProduct(product, it.quantity)
+        }
     }
 }

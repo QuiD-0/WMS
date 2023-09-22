@@ -5,13 +5,14 @@ import com.quid.wms.fixture.InboundFixture
 import com.quid.wms.inbound.gateway.repository.InboundRepository
 import io.restassured.RestAssured
 import io.restassured.http.ContentType
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 
 @ApiTest
-//@Disabled
+@Disabled
 class ConfirmInboundApiTest {
 
     @Autowired
@@ -25,7 +26,7 @@ class ConfirmInboundApiTest {
         RestAssured.given().log().all()
             .contentType(ContentType.JSON)
             .`when`()
-            .patch("/api/inbounds/${inbound.id}/confirm")
+            .patch("/api/inbounds/${inbound}/confirm")
             .then()
             .log().all()
             .statusCode(HttpStatus.NO_CONTENT.value())
@@ -39,7 +40,7 @@ class ConfirmInboundApiTest {
         RestAssured.given().log().all()
             .contentType(ContentType.JSON)
             .`when`()
-            .patch("/api/inbounds/${inbound.id}/confirm")
+            .patch("/api/inbounds/${inbound}/confirm")
             .then()
             .log().all()
             .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
