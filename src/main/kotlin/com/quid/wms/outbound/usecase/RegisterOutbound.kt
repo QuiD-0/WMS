@@ -1,5 +1,6 @@
 package com.quid.wms.outbound.usecase
 
+import com.quid.wms.order.domain.Order
 import com.quid.wms.order.gateway.repository.OrderRepository
 import com.quid.wms.outbound.gateway.repository.OutboundRepository
 import com.quid.wms.outbound.gateway.web.request.RegisterOutboundRequest
@@ -15,11 +16,9 @@ fun interface RegisterOutbound {
         private val outboundRepository: OutboundRepository
     ) : RegisterOutbound {
         override fun registerOutbound(request: RegisterOutboundRequest): Long {
-            if(orderRepository.existsById(request.orderId).not()){
-                throw IllegalArgumentException("order not found")
-            }
+            val order: Order = orderRepository.findById(request.orderId)
 
-            return request.toOutbound(1L)
+            return request.toOutbound(listOf(1L))
                 .let { outboundRepository.save(it) }
         }
     }

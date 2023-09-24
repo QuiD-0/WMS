@@ -7,7 +7,7 @@ data class Outbound(
     val orderId: Long,
     val isPriorityDelivery: Boolean,
     val desiredDeliveryDateTime: LocalDate,
-    val pickingLocationId: Long,
+    val pickingLocationIdList: List<Long>,
     val outboundStatus: OutboundStatus,
 ) {
 }
