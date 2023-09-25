@@ -13,12 +13,12 @@ data class RegisterOutboundRequest(
         require(orderId > 0) { "orderId must be greater than 0" }
     }
 
-    fun toOutbound(lpnIdList: List<Long>): Outbound {
+    fun toOutbound(locationIdList: List<Long>): Outbound {
         return Outbound(
             orderId = orderId,
             isPriorityDelivery = isPriorityDelivery,
             desiredDeliveryDateTime = desiredDeliveryDate,
-            pickingLocationIdList = lpnIdList,
+            pickingLocationIdList = locationIdList,
             outboundStatus = OutboundStatus.CREATED
         )
     }

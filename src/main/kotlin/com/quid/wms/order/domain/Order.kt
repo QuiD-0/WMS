@@ -10,6 +10,10 @@ data class Order(
         get() {
             return orderProducts.sumOf { it.totalPrice }
         }
+
+    fun findProductIdList(): List<Long> {
+        return orderProducts.map { it.productId }
+    }
 }
 
 fun createOrder(
