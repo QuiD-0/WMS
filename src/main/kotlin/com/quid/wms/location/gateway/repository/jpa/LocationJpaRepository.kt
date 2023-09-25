@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query
 interface LocationJpaRepository : JpaRepository<LocationEntity, Long>{
     fun findByLocationBarcode(locationBarcode: String): LocationEntity?
 
-    @Query("SELECT l FROM LocationEntity l inner join fetch LPNEntity lpn WHERE lpn.productId IN :findProductIdList")
+    @Query("select l.* from location l inner join lpn on l.location_id = lpn.location_id where lpn.product_id in :findProductIdList", nativeQuery = true)
     fun findLocationList(findProductIdList: List<Long>): List<LocationEntity>
 }
