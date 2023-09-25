@@ -19,13 +19,12 @@ import com.quid.wms.product.domain.Product
 import com.quid.wms.product.domain.ProductSize
 import com.quid.wms.product.domain.TemperatureZone
 import com.quid.wms.product.gateway.repository.ProductRepository
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDateTime
 
-@Disabled
+//@Disabled
 @SpringBootTest
 class InitDataScript {
 
@@ -43,26 +42,29 @@ class InitDataScript {
 
     @Test
     fun initDataScript() {
-        product.save(product())
+        product.save(product(1))
+        product.save(product(2))
         inbound.save(inbound())
-        location.save(location())
+        location.save(location1())
+        location.save(location2())
         order.save(order())
     }
 
-    fun product(): Product = Product(
-        id = 1L,
-        name = "Product 1",
-        code = "P1",
+    fun product(productId: Long): Product = Product(
+        id = productId,
+        name = "Product $productId",
+        code = "P$productId",
         price = 1000,
-        description = "Product 1 description",
-        brand = "Brand 1",
-        maker = "Maker 1",
-        origin = "Origin 1",
+        description = "Product $productId description",
+        brand = "Brand $productId",
+        maker = "Maker $productId",
+        origin = "Origin $productId",
         category = Category.FOOD,
         temperatureZone = TemperatureZone.ROOM_TEMPERATURE,
         weight = 100L,
         productSize = ProductSize(10, 10, 10),
     )
+
 
     fun inbound() = Inbound(
         id = 1L,
@@ -73,13 +75,13 @@ class InitDataScript {
         inboundItems = listOf(
             InboundItem(
                 id = 1L,
-                product = product(),
+                product = product(1),
                 quantity = 10,
                 unitPrice = 1000,
             ),
             InboundItem(
                 id = 2L,
-                product = product(),
+                product = product(2),
                 quantity = 10,
                 unitPrice = 1000,
                 ),
@@ -88,19 +90,26 @@ class InitDataScript {
         rejectReason = ""
     )
 
-    fun location(): Location = Location(
+    fun location1(): Location = Location(
         id = 1L,
         locationBarcode = "Location-1",
         storageType = StorageType.PALLET,
         usagePurpose = UsagePurpose.MOVE,
-        lpnList = listOf(lpn()),
+        lpnList = listOf(lpn(1,1),lpn(2,2)),
+    )
+    fun location2(): Location = Location(
+        id = 2L,
+        locationBarcode = "Location-2",
+        storageType = StorageType.PALLET,
+        usagePurpose = UsagePurpose.MOVE,
+        lpnList = listOf(lpn(1,1),lpn(3,3)),
     )
 
-    fun lpn():LPN = LPN(
-        id = 1L,
-        productId = 1L,
+    fun lpn(id: Long,productId: Long):LPN = LPN(
+        id = id,
+        productId = productId,
         inboundItemId = 1L,
-        lpnBarcode = "LPN-1",
+        lpnBarcode = "LPN-$id",
         expirationAt = LocalDateTime.now().plusMonths(1),
         quantity = 10L,
     )
