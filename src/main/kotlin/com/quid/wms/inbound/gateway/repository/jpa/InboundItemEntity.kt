@@ -18,14 +18,12 @@ class InboundItemEntity(
     @JoinColumn(name = "product_id")
     val product: ProductEntity,
     val quantity: Long,
-    val unitPrice: Long,
 ) {
-    fun toInboundItem() = InboundItem(id, product.toProduct(), quantity, unitPrice)
+    fun toInboundItem() = InboundItem(id, product.toProduct(), quantity)
 }
 
 fun inboundItemEntity(inboundItem: InboundItem) = InboundItemEntity(
     inboundItem.id,
     productEntity(inboundItem.product),
     inboundItem.quantity,
-    inboundItem.unitPrice,
 )

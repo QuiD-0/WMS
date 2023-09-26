@@ -19,12 +19,13 @@ import com.quid.wms.product.domain.Product
 import com.quid.wms.product.domain.ProductSize
 import com.quid.wms.product.domain.TemperatureZone
 import com.quid.wms.product.gateway.repository.ProductRepository
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDateTime
 
-//@Disabled
+@Disabled
 @SpringBootTest
 class InitDataScript {
 
@@ -77,13 +78,11 @@ class InitDataScript {
                 id = 1L,
                 product = product(1),
                 quantity = 10,
-                unitPrice = 1000,
             ),
             InboundItem(
                 id = 2L,
                 product = product(2),
                 quantity = 10,
-                unitPrice = 1000,
                 ),
         ),
         status = InboundStatus.REQUESTED,

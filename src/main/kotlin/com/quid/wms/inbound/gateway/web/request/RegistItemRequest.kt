@@ -8,5 +8,5 @@ data class RegistItemRequest(
     val quantity: Long,
     val unitPrice: Long
 ) {
-    fun toInboundItem(product: Product) = InboundItem(null, product, quantity, unitPrice)
+    fun toInboundItem(product: Product) = InboundItem(null, product, quantity)
 }

@@ -17,7 +17,6 @@ class InboundItemFixture {
         id,
         ProductFixture().product(),
         1,
-        1000,
     )
 }
 
