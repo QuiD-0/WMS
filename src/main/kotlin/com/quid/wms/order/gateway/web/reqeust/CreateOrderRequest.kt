@@ -2,7 +2,7 @@ package com.quid.wms.order.gateway.web.reqeust
 
 import com.quid.wms.order.domain.DeliveryInfo
 
-class CreateOrderRequest(
+data class CreateOrderRequest(
     val userId: Long,
     val productList: Map<Long, Int>,
     val deliveryInfo: DeliveryInfo,

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 
 class RegisterInboundTest {
 
-    private val productRepository = ProductFixture().productRepository()
+    private val productRepository = ProductFixture().repository()
     private val itemRepository = InboundItemFixture().repository()
     private val inboundRepository = InboundFixture().repository()
     private val registerInbound = RegisterInboundUseCase(productRepository,inboundRepository)

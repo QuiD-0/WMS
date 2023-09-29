@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertThrows
 
 class RegistProductTest{
 
-    private val registProduct: RegistProduct = RegistProductUseCase(ProductFixture().productRepository())
+    private val registProduct: RegistProduct = RegistProductUseCase(ProductFixture().repository())
 
     @Test
     @DisplayName("상품을 등록한다.")

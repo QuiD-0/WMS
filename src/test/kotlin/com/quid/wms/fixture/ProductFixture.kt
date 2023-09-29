@@ -44,7 +44,7 @@ class ProductFixture {
         100L
     )
 
-    fun productRepository() = ProductRepositoryFixture()
+    fun repository() = ProductRepositoryFixture()
 }
 
 class ProductRepositoryFixture: ProductRepository {
