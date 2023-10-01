@@ -24,4 +24,8 @@ class OrderApiController(
     @ResponseStatus(OK)
     fun getOrders(): List<Order> = findOrder.all()
 
+    @GetMapping("/{name}")
+    @ResponseStatus(OK)
+    fun getOrdersByName(@PathVariable name: String): List<Order> = findOrder.byName(name)
+
 }

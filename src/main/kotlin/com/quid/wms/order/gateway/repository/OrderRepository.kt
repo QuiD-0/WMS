@@ -10,6 +10,7 @@ interface OrderRepository {
     fun save(order: Order): Long
     fun findAll(): List<Order>
     fun findById(orderId: Long): Order
+    fun findByName(name: String): List<Order>
 
     @Repository
     class OrderRepositoryImpl(
@@ -22,5 +23,6 @@ interface OrderRepository {
             ?.toOrder()
             ?: throw IllegalArgumentException("Order not found")
 
+        override fun findByName(name: String): List<Order> = orderJpaRepository.findByName(name).map { it.toOrder() }
     }
 }

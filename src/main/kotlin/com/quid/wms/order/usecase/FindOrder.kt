@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 
 interface FindOrder {
     fun all(): List<Order>
+    fun byName(name: String): List<Order>
 
     @Service
     @Transactional(readOnly = true)
@@ -14,5 +15,6 @@ interface FindOrder {
         private val orderRepository: OrderRepository,
     ) : FindOrder {
         override fun all(): List<Order> = orderRepository.findAll()
+        override fun byName(name: String): List<Order> = orderRepository.findByName(name)
     }
 }
