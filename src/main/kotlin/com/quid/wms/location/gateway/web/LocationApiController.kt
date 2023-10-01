@@ -21,7 +21,7 @@ class LocationApiController(
 
     @PostMapping
     @ResponseStatus(CREATED)
-    fun registerLocation(@RequestBody request: RegisterLocationRequest): Long =
+    fun registerLocation(@RequestBody request: RegisterLocationRequest): Location =
         request.toLocation()
             .let { registLocation.execute(it) }
 

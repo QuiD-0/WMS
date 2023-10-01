@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 interface InboundRepository {
     fun findAll(): List<Inbound>
     fun findById(id: Long): Inbound
-    fun save(inbound: Inbound): Long
+    fun save(inbound: Inbound): Inbound
 
     @Repository
     class InboundRepositoryImpl(
@@ -21,7 +21,7 @@ interface InboundRepository {
         override fun findById(id: Long): Inbound = jpaRepository.findByIdOrNull(id)?.toInbound()
             ?: throw EntityNotFoundException("존재하지 않는 입고지시입니다.")
 
-        override fun save(inbound: Inbound): Long =
-            jpaRepository.save(inboundEntity(inbound)).id!!
+        override fun save(inbound: Inbound): Inbound =
+            jpaRepository.save(inboundEntity(inbound)).toInbound()
     }
 }

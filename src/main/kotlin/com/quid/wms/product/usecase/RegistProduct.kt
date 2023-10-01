@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 interface RegistProduct {
-    fun register(product: Product): Long
+    fun register(product: Product): Product
 
     @Service
     @Transactional
     class RegistProductUseCase(
         private val productRepository: ProductRepository
     ) : RegistProduct {
-        override fun register(product: Product): Long =
+        override fun register(product: Product): Product =
             productRepository.save(product)
     }
 }

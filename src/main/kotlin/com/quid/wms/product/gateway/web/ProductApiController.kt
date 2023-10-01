@@ -1,5 +1,6 @@
 package com.quid.wms.product.gateway.web
 
+import com.quid.wms.product.domain.Product
 import com.quid.wms.product.gateway.web.request.RegistProductRequest
 import com.quid.wms.product.usecase.FindProduct
 import com.quid.wms.product.usecase.RegistProduct
@@ -15,7 +16,7 @@ class ProductApiController(
 ) {
     @PostMapping
     @ResponseStatus(CREATED)
-    fun request(@RequestBody request: RegistProductRequest): Long =
+    fun request(@RequestBody request: RegistProductRequest): Product =
         registProduct.register(request.toDomain())
 
     @GetMapping
