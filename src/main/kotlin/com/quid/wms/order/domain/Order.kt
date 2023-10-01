@@ -14,6 +14,10 @@ data class Order(
     fun findProductIdList(): List<Long> {
         return orderProducts.map { it.productId }
     }
+
+    fun containsProductId(productId: Long): Boolean {
+        return orderProducts.any { it.productId == productId }
+    }
 }
 
 fun createOrder(
