@@ -6,7 +6,7 @@ data class Order(
     val deliveryInfo: DeliveryInfo,
     val orderProducts: List<OrderProduct> = listOf(),
 ) {
-    val totalPrice: Int
+    val totalPrice: Long
         get() {
             return orderProducts.sumOf { it.totalPrice }
         }
@@ -14,20 +14,14 @@ data class Order(
     fun findProductIdList(): List<Long> {
         return orderProducts.map { it.productId }
     }
-
-    fun containsProductId(productId: Long): Boolean {
-        return orderProducts.any { it.productId == productId }
-    }
 }
 
 fun createOrder(
     orderCustomer: OrderCustomer,
     deliveryInfo: DeliveryInfo,
     orderProducts: List<OrderProduct>,
-): Order {
-    return Order(
-        orderCustomer = orderCustomer,
-        deliveryInfo = deliveryInfo,
-        orderProducts = orderProducts,
-    )
-}
+): Order = Order(
+    orderCustomer = orderCustomer,
+    deliveryInfo = deliveryInfo,
+    orderProducts = orderProducts,
+)

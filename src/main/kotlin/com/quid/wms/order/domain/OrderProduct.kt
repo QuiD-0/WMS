@@ -5,10 +5,10 @@ import com.quid.wms.product.domain.Product
 data class OrderProduct(
     val id: Long? = null,
     val productId: Long,
-    val quantity: Int,
+    val quantity: Long,
     val unitPrice: Int,
 ) {
-    val totalPrice: Int
+    val totalPrice: Long
         get() {
             return quantity * unitPrice
         }
@@ -19,7 +19,7 @@ data class OrderProduct(
 
 }
 
-fun orderProduct(product: Product, quantity: Int): OrderProduct {
+fun orderProduct(product: Product, quantity: Long): OrderProduct {
     return OrderProduct(
         productId = product.id!!,
         quantity = quantity,

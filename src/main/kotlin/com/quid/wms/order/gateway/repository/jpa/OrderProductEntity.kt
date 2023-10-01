@@ -1,10 +1,8 @@
 package com.quid.wms.order.gateway.repository.jpa
 
 import com.quid.wms.order.domain.OrderProduct
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
+import jakarta.persistence.GenerationType.IDENTITY
 import org.hibernate.annotations.Comment
 
 @Entity
@@ -12,13 +10,11 @@ import org.hibernate.annotations.Comment
 @Comment("주문 상품")
 class OrderProductEntity(
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "order_product_id")
     var id: Long? = null,
-    @Column(name = "product_id")
     val productId: Long,
-    @Column(name = "quantity")
-    val quantity: Int,
-    @Column(name = "unit_price")
+    val quantity: Long,
     val unitPrice: Int,
 ) {
     fun toOrderProduct(): OrderProduct = OrderProduct(

@@ -7,7 +7,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 interface OrderRepository {
-    fun save(order: Order): Long
+    fun save(order: Order): Order
     fun findAll(): List<Order>
     fun findById(orderId: Long): Order
     fun findByName(name: String): List<Order>
@@ -16,7 +16,7 @@ interface OrderRepository {
     class OrderRepositoryImpl(
         private val orderJpaRepository: OrderJpaRepository,
     ) : OrderRepository {
-        override fun save(order: Order): Long = orderJpaRepository.save(orderEntity(order)).id!!
+        override fun save(order: Order): Order = orderJpaRepository.save(orderEntity(order)).toOrder()
         override fun findAll(): List<Order> = orderJpaRepository.findAll().map { it.toOrder() }
         override fun findById(orderId: Long): Order = orderJpaRepository
             .findByIdOrNull(orderId)
