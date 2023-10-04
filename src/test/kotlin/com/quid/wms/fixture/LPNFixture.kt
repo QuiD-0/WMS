@@ -15,7 +15,7 @@ class LPNFixture {
 
     fun repository(): LPNRepository = object : LPNRepository {
         private val lpns = mutableListOf<LPN>()
-        override fun save(lpn: LPN): Long = lpn.also { lpns.add(it) }.let { 1 }
+        override fun save(lpn: LPN): LPN = lpn.also { lpns.add(it) }.let { lpn }
         override fun findByBarcode(lpnBarcode: String): LPN {
             return lpns.find { it.lpnBarcode == lpnBarcode } ?: throw Exception("LPN not found")
         }

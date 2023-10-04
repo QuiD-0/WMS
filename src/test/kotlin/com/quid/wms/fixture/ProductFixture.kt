@@ -1,6 +1,7 @@
 package com.quid.wms.fixture
 
 import com.quid.wms.outbound.domain.OrderProduct
+import com.quid.wms.outbound.domain.ProductQuantity
 import com.quid.wms.outbound.domain.orderProduct
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.Product
@@ -53,10 +54,10 @@ class ProductRepositoryFixture: ProductRepository {
         return products.values.toList()
     }
 
-    override fun save(product: Product): Long {
+    override fun save(product: Product): Product {
         if(products.containsKey(product.id)) throw IllegalArgumentException("Product already exists")
         products[1] = product
-        return 1
+        return product
     }
 
     override fun deleteAll() {

@@ -57,10 +57,10 @@ class InboundRepositoryFixture: InboundRepository {
         return inbounds[id]!!
     }
 
-    override fun save(inbound: Inbound): Long {
+    override fun save(inbound: Inbound): Inbound {
         val id = inbound.id?:1
         inbounds[id] = inbound
-        return id
+        return inbound
     }
 
 }

@@ -32,7 +32,10 @@ class OrderFixture {
 
 private class OrderRepositoryFixture : OrderRepository {
     val list= mutableListOf<Order>()
-    override fun save(order: Order): Long = list.add(order).let { 1L }
+    override fun save(order: Order): Order = list.add(order).let { order }
     override fun findAll(): List<Order> = list
     override fun findById(orderId: Long): Order = list.first { it.id == orderId }
+    override fun findByName(name: String): List<Order> {
+        return list.filter { it.orderCustomer.name == name }
+    }
 }
