@@ -1,7 +1,5 @@
 package com.quid.wms.outbound.gateway.repository.jpa
 
-import com.quid.wms.order.gateway.repository.jpa.OrderEntity
-import com.quid.wms.order.gateway.repository.jpa.orderEntity
 import com.quid.wms.outbound.domain.Outbound
 import com.quid.wms.outbound.domain.OutboundStatus
 import jakarta.persistence.*

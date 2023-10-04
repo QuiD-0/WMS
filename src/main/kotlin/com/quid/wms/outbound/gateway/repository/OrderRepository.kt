@@ -1,8 +1,8 @@
-package com.quid.wms.order.gateway.repository
+package com.quid.wms.outbound.gateway.repository
 
-import com.quid.wms.order.domain.Order
-import com.quid.wms.order.gateway.repository.jpa.OrderJpaRepository
-import com.quid.wms.order.gateway.repository.jpa.orderEntity
+import com.quid.wms.outbound.domain.Order
+import com.quid.wms.outbound.gateway.repository.jpa.OrderJpaRepository
+import com.quid.wms.outbound.gateway.repository.jpa.orderEntity
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 

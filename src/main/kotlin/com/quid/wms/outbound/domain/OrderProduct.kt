@@ -1,4 +1,4 @@
-package com.quid.wms.order.domain
+package com.quid.wms.outbound.domain
 
 import com.quid.wms.product.domain.Product
 

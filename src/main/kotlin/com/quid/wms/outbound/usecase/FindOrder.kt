@@ -1,7 +1,7 @@
-package com.quid.wms.order.usecase
+package com.quid.wms.outbound.usecase
 
-import com.quid.wms.order.domain.Order
-import com.quid.wms.order.gateway.repository.OrderRepository
+import com.quid.wms.outbound.domain.Order
+import com.quid.wms.outbound.gateway.repository.OrderRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

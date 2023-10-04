@@ -1,8 +1,8 @@
-package com.quid.wms.order.gateway.repository.jpa
+package com.quid.wms.outbound.gateway.repository.jpa
 
-import com.quid.wms.order.domain.DeliveryInfo
-import com.quid.wms.order.domain.Order
-import com.quid.wms.order.domain.OrderCustomer
+import com.quid.wms.outbound.domain.DeliveryInfo
+import com.quid.wms.outbound.domain.Order
+import com.quid.wms.outbound.domain.OrderCustomer
 import jakarta.persistence.*
 import jakarta.persistence.CascadeType.MERGE
 import jakarta.persistence.CascadeType.PERSIST

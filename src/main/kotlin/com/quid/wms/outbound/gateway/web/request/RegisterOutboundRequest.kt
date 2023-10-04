@@ -1,10 +1,6 @@
 package com.quid.wms.outbound.gateway.web.request
 
-import com.quid.wms.order.domain.DeliveryInfo
-import com.quid.wms.order.domain.Order
-import com.quid.wms.outbound.domain.Outbound
-import com.quid.wms.outbound.domain.OutboundStatus
-import com.quid.wms.outbound.domain.ProductQuantity
+import com.quid.wms.outbound.domain.*
 import java.time.LocalDate
 
 data class RegisterOutboundRequest(

@@ -1,10 +1,10 @@
 package com.quid.wms.fixture
 
-import com.quid.wms.order.domain.DeliveryInfo
-import com.quid.wms.order.domain.Order
-import com.quid.wms.order.domain.OrderCustomer
-import com.quid.wms.order.domain.OrderProduct
-import com.quid.wms.order.gateway.repository.OrderRepository
+import com.quid.wms.outbound.domain.DeliveryInfo
+import com.quid.wms.outbound.domain.Order
+import com.quid.wms.outbound.domain.OrderCustomer
+import com.quid.wms.outbound.domain.OrderProduct
+import com.quid.wms.outbound.gateway.repository.OrderRepository
 
 class OrderFixture {
 

@@ -1,4 +1,4 @@
-package com.quid.wms.order.domain
+package com.quid.wms.outbound.domain
 
 data class OrderCustomer(
     val name: String,

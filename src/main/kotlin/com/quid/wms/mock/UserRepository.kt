@@ -1,6 +1,6 @@
 package com.quid.wms.mock
 
-import com.quid.wms.order.domain.OrderCustomer
+import com.quid.wms.outbound.domain.OrderCustomer
 import org.springframework.stereotype.Repository
 
 interface UserRepository {

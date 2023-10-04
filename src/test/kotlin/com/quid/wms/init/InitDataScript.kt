@@ -9,11 +9,11 @@ import com.quid.wms.location.domain.Location
 import com.quid.wms.location.domain.StorageType
 import com.quid.wms.location.domain.UsagePurpose
 import com.quid.wms.location.gateway.repository.LocationRepository
-import com.quid.wms.order.domain.DeliveryInfo
-import com.quid.wms.order.domain.Order
-import com.quid.wms.order.domain.OrderCustomer
-import com.quid.wms.order.domain.OrderProduct
-import com.quid.wms.order.gateway.repository.OrderRepository
+import com.quid.wms.outbound.domain.DeliveryInfo
+import com.quid.wms.outbound.domain.Order
+import com.quid.wms.outbound.domain.OrderCustomer
+import com.quid.wms.outbound.domain.OrderProduct
+import com.quid.wms.outbound.gateway.repository.OrderRepository
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.Product
 import com.quid.wms.product.domain.ProductSize

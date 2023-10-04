@@ -1,6 +1,6 @@
-package com.quid.wms.order.gateway.repository.jpa
+package com.quid.wms.outbound.gateway.repository.jpa
 
-import com.quid.wms.order.domain.OrderProduct
+import com.quid.wms.outbound.domain.OrderProduct
 import jakarta.persistence.*
 import jakarta.persistence.GenerationType.IDENTITY
 import org.hibernate.annotations.Comment

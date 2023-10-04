@@ -1,9 +1,8 @@
-package com.quid.wms.order.usecase
+package com.quid.wms.outbound.usecase
 
 import com.quid.wms.mock.UserRepository
-import com.quid.wms.order.domain.*
-import com.quid.wms.order.gateway.repository.OrderRepository
-import com.quid.wms.outbound.domain.ProductQuantity
+import com.quid.wms.outbound.domain.*
+import com.quid.wms.outbound.gateway.repository.OrderRepository
 import com.quid.wms.product.gateway.repository.ProductRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

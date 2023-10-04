@@ -3,8 +3,9 @@ package com.quid.wms.order.usecase
 import com.quid.wms.fixture.OrderFixture
 import com.quid.wms.fixture.ProductFixture
 import com.quid.wms.mock.UserRepository
-import com.quid.wms.order.domain.DeliveryInfo
 import com.quid.wms.order.gateway.web.reqeust.CreateOrderRequest
+import com.quid.wms.outbound.domain.DeliveryInfo
+import com.quid.wms.outbound.usecase.CreateOrder
 import org.junit.jupiter.api.Test
 
 class CreateOrderTest {

@@ -3,8 +3,7 @@ package com.quid.wms.outbound.usecase
 import com.quid.wms.location.domain.LPN
 import com.quid.wms.location.domain.Location
 import com.quid.wms.location.gateway.repository.LocationRepository
-import com.quid.wms.order.domain.*
-import com.quid.wms.order.usecase.CreateOrder
+import com.quid.wms.outbound.domain.Order
 import com.quid.wms.outbound.domain.Outbound
 import com.quid.wms.outbound.domain.ProductQuantity
 import com.quid.wms.outbound.gateway.repository.OutboundRepository

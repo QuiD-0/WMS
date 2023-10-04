@@ -1,7 +1,7 @@
 package com.quid.wms.fixture
 
-import com.quid.wms.order.domain.OrderProduct
-import com.quid.wms.order.domain.orderProduct
+import com.quid.wms.outbound.domain.OrderProduct
+import com.quid.wms.outbound.domain.orderProduct
 import com.quid.wms.product.domain.Category
 import com.quid.wms.product.domain.Product
 import com.quid.wms.product.domain.ProductSize

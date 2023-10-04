@@ -1,8 +1,8 @@
 package com.quid.wms.product.gateway.repository
 
-import com.quid.wms.order.domain.OrderProduct
-import com.quid.wms.order.domain.orderProduct
+import com.quid.wms.outbound.domain.OrderProduct
 import com.quid.wms.outbound.domain.ProductQuantity
+import com.quid.wms.outbound.domain.orderProduct
 import com.quid.wms.product.domain.Product
 import com.quid.wms.product.gateway.repository.jpa.ProductJpaRepository
 import com.quid.wms.product.gateway.repository.jpa.productEntity
